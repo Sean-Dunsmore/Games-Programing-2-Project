@@ -19,6 +19,12 @@
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{27b5c109-8853-476b-8359-9023323b8c71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{4cc062fe-1d14-4ada-a576-cc7ca5b9a567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{b0a39ac1-cb2e-4a86-9a47-6a0dfadc8037}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -33,8 +39,23 @@
     <ClCompile Include="Display.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
     <ClCompile Include="BumpScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="obj_loader.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.c">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,8 +71,113 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="BumpScene.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="BumpScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="obj_loader.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\15915199.ppt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\bump.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\bump.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\fogShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\fogShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\noBump.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\noBump.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\Rim.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\Rim.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\shaderToon.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\shaderToon.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\what.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\what.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\res\background.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\res\bang.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\res\scene.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\res\whistle.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\res\whistle1.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\res\whistle2.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\res\whistle3.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\res\bricks.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\brickwall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\n.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\normal.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\rock.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\Water.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\white.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

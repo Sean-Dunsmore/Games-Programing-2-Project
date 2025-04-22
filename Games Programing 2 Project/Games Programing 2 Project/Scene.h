@@ -1,6 +1,11 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include "Shader.h"
+#include "Mesh.h"
+#include "Texture.h"
+#include "transform.h"
+#include "Camera.h"
 
 //Parent class for all scenes to inherit from
 class Scene
@@ -18,7 +23,7 @@ public:
 
 	virtual void updateScene(time_t dt) {}; //Main update function
 
-	virtual void draw() {}; //Set visuals from game data
+	virtual void draw(time_t dt, Camera myCamera) {}; //Set visuals from game data
 
 protected:
 

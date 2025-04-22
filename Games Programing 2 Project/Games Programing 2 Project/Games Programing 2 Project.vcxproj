@@ -82,7 +82,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -142,14 +142,58 @@
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="obj_loader.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="stb_image.c" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BumpScene.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="obj_loader.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Transform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\15915199.ppt" />
+    <None Include="..\res\bump.frag" />
+    <None Include="..\res\bump.vert" />
+    <None Include="..\res\fogShader.frag" />
+    <None Include="..\res\fogShader.vert" />
+    <None Include="..\res\noBump.frag" />
+    <None Include="..\res\noBump.vert" />
+    <None Include="..\res\Rim.frag" />
+    <None Include="..\res\Rim.vert" />
+    <None Include="..\res\shaderToon.frag" />
+    <None Include="..\res\shaderToon.vert" />
+    <None Include="..\res\what.frag" />
+    <None Include="..\res\what.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\res\background.wav" />
+    <Media Include="..\res\bang.wav" />
+    <Media Include="..\res\scene.wav" />
+    <Media Include="..\res\whistle.wav" />
+    <Media Include="..\res\whistle1.wav" />
+    <Media Include="..\res\whistle2.wav" />
+    <Media Include="..\res\whistle3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\res\bricks.jpg" />
+    <Image Include="..\res\brickwall.jpg" />
+    <Image Include="..\res\n.jpg" />
+    <Image Include="..\res\normal.jpg" />
+    <Image Include="..\res\rock.jpg" />
+    <Image Include="..\res\Water.jpg" />
+    <Image Include="..\res\white.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

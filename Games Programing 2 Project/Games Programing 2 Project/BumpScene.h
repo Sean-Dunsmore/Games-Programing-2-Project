@@ -16,11 +16,21 @@ public:
 
 	void updateScene(time_t dt); //Main update function
 
-	void draw(); //Set visuals from game data
+	void draw(time_t dt, Camera myCamera); //Set visuals from game data
 
 protected:
 
+	void linkBumpMapping(); //Link bump mapping
+
 	void cleanup();
+
+	Shader bump;
+	Texture texture;
+	Texture bumpMapping;
+	Mesh mesh;
+	Transform transform;
+
+	float counter = 1;
 
 };
 

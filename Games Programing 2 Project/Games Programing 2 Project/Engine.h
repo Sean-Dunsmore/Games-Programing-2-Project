@@ -3,11 +3,7 @@
 #include <GL/glew.h>
 #include "BumpScene.h"
 #include "Display.h" 
-//#include "Shader.h" //TODO
-//#include "Mesh.h" //TODO
-//#include "Texture.h" //TODO
-//#include "transform.h" //TODO
-#include "camera.h" //TODO: Maybe remove this?
+#include "Camera.h"
 #include <windows.h>
 
 //The Engine class contains functionality that will be shared between both games
@@ -67,7 +63,6 @@ private:
 	//Meshes TODO: Rework into list/vector or something
 	//Mesh mesh1;
 	//Mesh mesh2;
-	//Mesh mesh3;
 
 	//Camera
 	Camera myCamera;
@@ -82,8 +77,6 @@ private:
 
 	//Textures TODO: Rework into list/vector or something
 	//Texture texture1;
-	//Texture texture2;
-	//Texture bumpMapping;
 
 };
 

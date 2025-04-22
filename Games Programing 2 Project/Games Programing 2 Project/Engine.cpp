@@ -35,25 +35,11 @@ void Engine::init()
 	//toonShader.init("..\\res\\shaderToon.vert", "..\\res\\shaderToon.frag"); //new shader
 	//rimShader.init("..\\res\\Rim.vert", "..\\res\\Rim.frag");
 	//what.init("..\\res\\what.vert", "..\\res\\what.frag");
-	//bump.init("..\\res\\bump.vert", "..\\res\\bump.frag");
 	//noBump.init("..\\res\\noBump.vert", "..\\res\\noBump.frag");
 	//texture1.load("..\\res\\bricks.jpg"); //load texture
-	//texture2.load("..\\res\\rock.jpg"); //load texture
-	//bumpMapping.loadNormals("..\\res\\n.jpg");
 
 	//Init Camera
 	myCamera.initCamera(glm::vec3(2, 0, -4), 70.0f, (float)gameDisplay.getWidth() / gameDisplay.getHeight(), 0.01f, 1000.0f);
-
-	//TODO: Rework whatever this is to be in a suitable location
-	/*Vertex vertices[] = { Vertex(glm::vec3(-1.0, 1.0, 0), glm::vec2(0.0, 1.0)),
-					Vertex(glm::vec3(1.0, 1.0, 0), glm::vec2(1.0, 1.0)),
-					Vertex(glm::vec3(-1.0, -1.0, 0), glm::vec2(0.0, 0.0)),
-					Vertex(glm::vec3(-1.0, -1.0, 0), glm::vec2(0.0, 0.0)),
-					Vertex(glm::vec3(1.0, 1.0, 0), glm::vec2(1.0, 1.0)),
-					Vertex(glm::vec3(1.0, -1.0, 0), glm::vec2(1.0, 0.0)) };
-
-	mesh3.loadVertexs(vertices, sizeof(vertices) / sizeof(vertices[0]));*/
-
 
 	//Set starting scene
 	scenePointer = new BumpScene;
@@ -69,8 +55,8 @@ void Engine::calculateDeltatime()
 {
 
 	//Deltatime = milliseconds passed since last frame //TODO
-	//deltatime = (clock() - oldTime);
-	//oldTime = clock();
+	deltatime = (clock() - oldTime);
+	oldTime = clock();
 }
 
 //Process input
@@ -115,7 +101,7 @@ void Engine::draw()
 	gameDisplay.clearDisplay(0.8f, 0.8f, 0.8f, 1.0f); //sets our background colour
 	
 	//Pass in display and camera position
-	scenePointer->draw();
+	scenePointer->draw(deltatime,myCamera);
 
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnd();
