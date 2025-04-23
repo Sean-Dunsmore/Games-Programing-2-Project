@@ -5,10 +5,10 @@ class BumpScene: public Scene
 {
 public:
 
-	BumpScene(); //Default Constructor
-	~BumpScene(); //Default Deconstructor
+	BumpScene(); //Constructor
+	~BumpScene(); //Deconstructor
 
-	void initaliseScene(); //Initilize Scene
+	void initaliseScene(Camera &myCamera); //Initilize Scene
 
 	void resetScene(); //Reset Game
 
@@ -24,11 +24,11 @@ protected:
 
 	void cleanup();
 
-	Shader bump;
-	Texture texture;
-	Texture bumpMapping;
-	Mesh mesh;
-	Transform transform;
+	Shader* bump;
+	Texture* texture;
+	Texture* bumpMapping;
+	Mesh* mesh;
+	Transform* transform;
 
 	float counter = 1;
 

@@ -4,6 +4,11 @@
 BumpScene::BumpScene()
 {
 
+	bump = new Shader;
+	texture = new Texture;
+	bumpMapping = new Texture;
+	mesh = new Mesh;
+	transform = new Transform;
 }
 
 //Deconstructor
@@ -13,17 +18,17 @@ BumpScene::~BumpScene()
 }
 
 //Initilize game
-void BumpScene::initaliseScene()
+void BumpScene::initaliseScene(Camera &myCamera)
 {
 
 	//Load shader
-	bump.init("..\\res\\bump.vert", "..\\res\\bump.frag");
+	bump->init("..\\res\\bump.vert", "..\\res\\bump.frag");
 	
 	//Load texture
-	texture.load("..\\res\\rock.jpg");
+	texture->load("..\\res\\rock.jpg");
 
 	//Load bumpmap
-	bumpMapping.loadNormals("..\\res\\n.jpg");
+	bumpMapping->loadNormals("..\\res\\n.jpg");
 
 	//Load mesh
 	Vertex vertices[] = { Vertex(glm::vec3(-1.0, 1.0, 0), glm::vec2(0.0, 1.0)),
@@ -33,8 +38,12 @@ void BumpScene::initaliseScene()
 					Vertex(glm::vec3(1.0, 1.0, 0), glm::vec2(1.0, 1.0)),
 					Vertex(glm::vec3(1.0, -1.0, 0), glm::vec2(1.0, 0.0)) };
 
-	mesh.loadVertexs(vertices, sizeof(vertices) / sizeof(vertices[0]));
+	mesh->loadVertexs(vertices, sizeof(vertices) / sizeof(vertices[0]));
 
+	//Set camera lookat
+	myCamera.setLook(*transform->GetPos());
+	myCamera.setPos(glm::vec3(2, 0, -4));
+	myCamera.setUp(glm::vec3(0, 1, 0));
 };
 
 //Reset the game
@@ -63,38 +72,48 @@ void BumpScene::draw(time_t dt, Camera myCamera)
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
-	transform.SetPos(glm::vec3(1.0, 0.0, 0.0));
-	transform.SetRot(glm::vec3(0.0, sin(counter), 0.0));
-	transform.SetScale(glm::vec3(1.5, 1.5, 1.5));
+	transform->SetPos(glm::vec3(1.0, 0.0, 0.0));
+	transform->SetRot(glm::vec3(0.0, sin(counter), 0.0));
+	transform->SetScale(glm::vec3(1.5, 1.5, 1.5));
 
 	//Bind bump shader
-	bump.Bind();
+	bump->Bind();
 	linkBumpMapping();
-	bump.Update(transform, myCamera);
-	mesh.drawVertexes();
-
-	//Set camera lookat TODO:remove this
-	myCamera.setLook(*transform.GetPos());
+	bump->Update(*transform, myCamera);
+	mesh->drawVertexes();
 
 };
 
 void BumpScene::linkBumpMapping()
 {
-	GLuint t1L = glGetUniformLocation(bump.getID(), "diffuse"); //texture 1 location
-	GLuint t2L = glGetUniformLocation(bump.getID(), "normalT");
+	GLuint t1L = glGetUniformLocation(bump->getID(), "diffuse"); //texture 1 location
+	GLuint t2L = glGetUniformLocation(bump->getID(), "normalT");
 
 	//set textures
 	glActiveTexture(GL_TEXTURE0); //set acitve texture unit
-	glBindTexture(GL_TEXTURE_2D, texture.getID());
+	glBindTexture(GL_TEXTURE_2D, texture->getID());
 	glUniform1i(t1L, 0);
 
 	glActiveTexture(GL_TEXTURE1); //set acitve texture unit
-	glBindTexture(GL_TEXTURE_2D, bumpMapping.getID());
+	glBindTexture(GL_TEXTURE_2D, bumpMapping->getID());
 	glUniform1i(t2L, 1);
 }
 
 //Cleanup
 void BumpScene::cleanup()
 {
-	
+	delete bump;
+	bump = nullptr;
+
+	delete texture;
+	texture = nullptr;
+
+	delete bumpMapping;
+	bumpMapping = nullptr;
+
+	delete mesh;
+	mesh = nullptr;
+
+	delete transform;
+	transform = nullptr;
 }

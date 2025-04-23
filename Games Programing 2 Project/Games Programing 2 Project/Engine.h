@@ -6,6 +6,12 @@
 #include "Camera.h"
 #include <windows.h>
 
+enum CurrentScene
+{
+	Bump,
+	BumpAgain
+};
+
 //The Engine class contains functionality that will be shared between both games
 //It contains both the main menu to select a game and the main loop
 //It also contains the screenbuffers and draw calls
@@ -30,7 +36,7 @@ private:
 
 	void mainLoop(); //Main loop
 
-	//Link shaders TODO: Simplify into a single function
+	//Link shaders
 	//TODO: Actually these should be in the individual scenes probably
 	//void linkBumpMapping();
 	//void linkFogShader();
@@ -44,6 +50,12 @@ private:
 	//Audio
 	//void playAudio(unsigned int Source, glm::vec3 pos);
 
+	void nextScene(); //Next Scene
+
+	void lastScene(); //last Scene
+
+	void changeScene(); //change Scene
+
 	void cleanup(); //Cleanup all Memory
 
 	//Engine is running
@@ -51,6 +63,7 @@ private:
 
 	//Pointer to current Scene
 	Scene* scenePointer;
+	CurrentScene scene;
 
 	//Deltatime
 	time_t deltatime;

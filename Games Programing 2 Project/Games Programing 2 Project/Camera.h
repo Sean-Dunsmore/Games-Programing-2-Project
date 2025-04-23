@@ -3,7 +3,6 @@
 #include <glm/gtx/transform.hpp>
 
 //Simple first person camera class
-//TODO: Reenable most of this functionality in the engine
 struct Camera
 {
 public:
@@ -45,33 +44,43 @@ public:
 		forward = glm::vec3(glm::normalize(modelPos - pos));
 	}
 
-	//void MoveForward(float amt)
-	//{
-	//	pos += forward * amt;
-	//}
+	void setPos(glm::vec3 Pos)
+	{
+		pos = Pos;
+	}
 
-	//void MoveRight(float amt)
-	//{
-	//	pos += glm::cross(up, forward) * amt;
-	//}
+	void setUp(glm::vec3 Up)
+	{
+		up = Up;
+	}
 
-	//void Pitch(float angle)
-	//{
-	//	glm::vec3 right = glm::normalize(glm::cross(up, forward));
+	void MoveForward(float amt)
+	{
+		pos += forward * amt;
+	}
 
-	//	forward = glm::vec3(glm::normalize(glm::rotate(angle, right) * glm::vec4(forward, 0.0)));
-	//	up = glm::normalize(glm::cross(forward, right));
-	//}
+	void MoveRight(float amt)
+	{
+		pos += glm::cross(up, forward) * amt;
+	}
 
-	//void RotateY(float angle)
-	//{
-	//	static const glm::vec3 UP(0.0f, 1.0f, 0.0f);
+	void Pitch(float angle)
+	{
+		glm::vec3 right = glm::normalize(glm::cross(up, forward));
 
-	//	glm::mat4 rotation = glm::rotate(angle, UP);
+		forward = glm::vec3(glm::normalize(glm::rotate(angle, right) * glm::vec4(forward, 0.0)));
+		up = glm::normalize(glm::cross(forward, right));
+	}
 
-	//	forward = glm::vec3(glm::normalize(rotation * glm::vec4(forward, 0.0)));
-	//	up = glm::vec3(glm::normalize(rotation * glm::vec4(up, 0.0)));
-	//}
+	void RotateY(float angle)
+	{
+		static const glm::vec3 UP(0.0f, 1.0f, 0.0f);
+
+		glm::mat4 rotation = glm::rotate(angle, UP);
+
+		forward = glm::vec3(glm::normalize(rotation * glm::vec4(forward, 0.0)));
+		up = glm::vec3(glm::normalize(rotation * glm::vec4(up, 0.0)));
+	}
 
 protected:
 private:

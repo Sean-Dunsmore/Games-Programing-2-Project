@@ -13,9 +13,9 @@ class Scene
 public:
 
 	Scene(); //Default Constructor
-	~Scene(); //Default Deconstructor
+	virtual ~Scene(); //Default Deconstructor
 
-	virtual void initaliseScene() {}; //Initilize Scene
+	virtual void initaliseScene(Camera &myCamera) {}; //Initilize Scene
 
 	virtual void resetScene() {}; //Reset Game
 

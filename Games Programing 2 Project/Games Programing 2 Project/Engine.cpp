@@ -42,8 +42,8 @@ void Engine::init()
 	myCamera.initCamera(glm::vec3(2, 0, -4), 70.0f, (float)gameDisplay.getWidth() / gameDisplay.getHeight(), 0.01f, 1000.0f);
 
 	//Set starting scene
-	scenePointer = new BumpScene;
-	scenePointer->initaliseScene();
+	scene = Bump;
+	changeScene();
 
 	//Start main loop
 	mainLoop();
@@ -66,9 +66,49 @@ void Engine::processInput()
 	//Process scene inputs
 	scenePointer->processInput(deltatime);
 
-	//TODO: INPUTS TO CHANGE SCENE
-	//Delete scene
-	//Init new scene
+	//Camera movement
+	if (GetKeyState('W') & 0x8000)
+	{
+		myCamera.MoveForward(0.001 * deltatime);
+	}
+	if (GetKeyState('S') & 0x8000)
+	{
+		myCamera.MoveForward(-0.001 * deltatime);
+	}
+	if (GetKeyState('D') & 0x8000)
+	{
+		myCamera.MoveRight(-0.001 * deltatime);
+	}
+	if (GetKeyState('A') & 0x8000)
+	{
+		myCamera.MoveRight(0.001 * deltatime);
+	}
+	if (GetKeyState(VK_LEFT) & 0x8000)
+	{
+		myCamera.RotateY(0.001 * deltatime);
+	}
+	if (GetKeyState(VK_RIGHT) & 0x8000)
+	{
+		myCamera.RotateY(-0.001 * deltatime);
+	}
+	if (GetKeyState(VK_UP) & 0x8000)
+	{
+		myCamera.Pitch(0.001 * deltatime);
+	}
+	if (GetKeyState(VK_DOWN) & 0x8000)
+	{
+		myCamera.Pitch(-0.001 * deltatime);
+	}
+
+	//Change Scene
+	if (GetKeyState('J') & 0x8000)
+	{
+		lastScene(); //last Scene
+	}
+	else if (GetKeyState('K') & 0x8000)
+	{
+		nextScene(); //Next Scene
+	}
 
 	//Check for exit game
 	SDL_Event evnt;
@@ -129,6 +169,57 @@ void Engine::mainLoop()
 	//Run cleanup
 	cleanup();
 
+}
+
+void Engine::nextScene() //Next Scene
+{
+
+	switch (scene)
+	{
+	case Bump:
+		scene = BumpAgain;
+		break;
+	case BumpAgain:
+		scene = Bump;
+		break;
+	}
+
+	changeScene();
+}
+
+void Engine::lastScene() //Next Scene
+{
+
+	switch (scene)
+	{
+	case Bump:
+		scene = BumpAgain;
+		break;
+	case BumpAgain:
+		scene = Bump;
+		break;
+	}
+
+	changeScene();
+}
+
+void Engine::changeScene() //Change Scene
+{
+
+	delete scenePointer;
+	scenePointer = nullptr;
+
+	switch (scene)
+	{
+	case Bump:
+			scenePointer = new BumpScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	case BumpAgain:
+			scenePointer = new BumpScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	}
 }
 
 //Cleanup pointers
