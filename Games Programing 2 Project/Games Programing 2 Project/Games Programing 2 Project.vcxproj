@@ -144,6 +144,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="obj_loader.cpp" />
+    <ClCompile Include="RimScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb_image.c" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="obj_loader.h" />
+    <ClInclude Include="RimScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stb_image.h" />

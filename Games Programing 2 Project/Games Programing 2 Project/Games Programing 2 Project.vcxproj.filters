@@ -57,6 +57,9 @@
     <ClCompile Include="stb_image.c">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="RimScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="obj_loader.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="RimScene.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

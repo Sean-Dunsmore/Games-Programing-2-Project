@@ -4,12 +4,13 @@
 #include "BumpScene.h"
 #include "Display.h" 
 #include "Camera.h"
+#include "RimScene.h"
 #include <windows.h>
 
 enum CurrentScene
 {
 	Bump,
-	BumpAgain
+	Fog
 };
 
 //The Engine class contains functionality that will be shared between both games
@@ -39,7 +40,6 @@ private:
 	//Link shaders
 	//TODO: Actually these should be in the individual scenes probably
 	//void linkBumpMapping();
-	//void linkFogShader();
 	//void linkToon();
 	//void linkRimShader();
 	//void linkWhat();
@@ -81,7 +81,6 @@ private:
 	Camera myCamera;
 
 	//Shaders TODO: Rework into list/vector or something
-	//Shader fogShader;
 	//Shader toonShader;
 	//Shader rimShader;
 	//Shader bump;

@@ -26,17 +26,11 @@ void Engine::init()
 	//Engine is running
 	isRunning = true;
 
-
-	//TODO: Rework all this file loading init stuff
 	//TODO: probably put this in the specific scenes
-	//mesh1.loadModel("..\\res\\monkey3.obj");
-	//mesh2.loadModel("..\\res\\Ball.obj");
-	//fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); //new shader
 	//toonShader.init("..\\res\\shaderToon.vert", "..\\res\\shaderToon.frag"); //new shader
 	//rimShader.init("..\\res\\Rim.vert", "..\\res\\Rim.frag");
 	//what.init("..\\res\\what.vert", "..\\res\\what.frag");
 	//noBump.init("..\\res\\noBump.vert", "..\\res\\noBump.frag");
-	//texture1.load("..\\res\\bricks.jpg"); //load texture
 
 	//Init Camera
 	myCamera.initCamera(glm::vec3(2, 0, -4), 70.0f, (float)gameDisplay.getWidth() / gameDisplay.getHeight(), 0.01f, 1000.0f);
@@ -177,9 +171,9 @@ void Engine::nextScene() //Next Scene
 	switch (scene)
 	{
 	case Bump:
-		scene = BumpAgain;
+		scene = Fog;
 		break;
-	case BumpAgain:
+	case Fog:
 		scene = Bump;
 		break;
 	}
@@ -193,9 +187,9 @@ void Engine::lastScene() //Next Scene
 	switch (scene)
 	{
 	case Bump:
-		scene = BumpAgain;
+		scene = Fog;
 		break;
-	case BumpAgain:
+	case Fog:
 		scene = Bump;
 		break;
 	}
@@ -215,8 +209,8 @@ void Engine::changeScene() //Change Scene
 			scenePointer = new BumpScene;
 			scenePointer->initaliseScene(myCamera);
 		break;
-	case BumpAgain:
-			scenePointer = new BumpScene;
+	case Fog:
+			scenePointer = new RimScene;
 			scenePointer->initaliseScene(myCamera);
 		break;
 	}
