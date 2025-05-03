@@ -58,7 +58,7 @@
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="RimScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,7 +96,7 @@
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="RimScene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
