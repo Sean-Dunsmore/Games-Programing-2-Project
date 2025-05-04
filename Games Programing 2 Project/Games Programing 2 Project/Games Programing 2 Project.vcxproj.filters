@@ -25,6 +25,21 @@
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{b0a39ac1-cb2e-4a86-9a47-6a0dfadc8037}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{cc4d759e-2b3a-40b2-b58e-906569fad76e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\Vertex">
+      <UniqueIdentifier>{5c2e5a8d-7fd4-4185-8acb-34e99cc8e2ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\Fragment">
+      <UniqueIdentifier>{1ba98911-2a72-4629-8831-95ec8e911eaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Texture">
+      <UniqueIdentifier>{a35f15b3-5d0e-4584-be3b-ce9a0a3b861f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sound">
+      <UniqueIdentifier>{8fa4591d-9ae3-4df7-adc0-50bbb5fb5cb8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -100,90 +115,87 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\15915199.ppt">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\res\bump.frag">
-      <Filter>Resource Files</Filter>
+    <None Include="..\res\fogShader.vert">
+      <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
     <None Include="..\res\bump.vert">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Vertex</Filter>
+    </None>
+    <None Include="..\res\bump.frag">
+      <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\fogShader.frag">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\res\fogShader.vert">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\noBump.frag">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\noBump.vert">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
     <None Include="..\res\Rim.frag">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\Rim.vert">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
     <None Include="..\res\shaderToon.frag">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\shaderToon.vert">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
     <None Include="..\res\what.frag">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\what.vert">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\res\background.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Sound</Filter>
     </Media>
     <Media Include="..\res\bang.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Sound</Filter>
     </Media>
     <Media Include="..\res\scene.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Sound</Filter>
     </Media>
     <Media Include="..\res\whistle.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Sound</Filter>
     </Media>
     <Media Include="..\res\whistle1.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Sound</Filter>
     </Media>
     <Media Include="..\res\whistle2.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Sound</Filter>
     </Media>
     <Media Include="..\res\whistle3.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Sound</Filter>
     </Media>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\res\bricks.jpg">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Texture</Filter>
     </Image>
     <Image Include="..\res\brickwall.jpg">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Texture</Filter>
     </Image>
     <Image Include="..\res\n.jpg">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Texture</Filter>
     </Image>
     <Image Include="..\res\normal.jpg">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Texture</Filter>
     </Image>
     <Image Include="..\res\rock.jpg">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Texture</Filter>
     </Image>
     <Image Include="..\res\Water.jpg">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Texture</Filter>
     </Image>
     <Image Include="..\res\white.jpg">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Texture</Filter>
     </Image>
   </ItemGroup>
 </Project>

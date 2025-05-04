@@ -165,7 +165,6 @@
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\15915199.ppt" />
     <None Include="..\res\bump.frag" />
     <None Include="..\res\bump.vert" />
     <None Include="..\res\fogShader.frag" />

@@ -83,6 +83,7 @@ void RimScene::draw(time_t dt, Camera myCamera)
 	fog->Bind();
 	linkFogShader();
 	fog->Update(*transform, myCamera);
+
 	mesh->draw();
 
 };

@@ -76,11 +76,13 @@ void BumpScene::draw(time_t dt, Camera myCamera)
 	transform->SetRot(glm::vec3(0.0, sin(counter), 0.0));
 	transform->SetScale(glm::vec3(1.5, 1.5, 1.5));
 
+	mesh->drawVertexes();
+
 	//Bind bump shader
 	bump->Bind();
 	linkBumpMapping();
 	bump->Update(*transform, myCamera);
-	mesh->drawVertexes();
+	
 
 };
 
