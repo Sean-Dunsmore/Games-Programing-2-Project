@@ -6,15 +6,18 @@ DefaultScene::DefaultScene()
 
 	fog = new Shader;
 	bump = new Shader;
+	toon = new Shader;
 
-	texture1 = new Texture;
+	rock = new Texture;
 	bumpMapping = new Texture;
 
-	mesh1 = new Mesh;
-	mesh2 = new Mesh;
+	fogMesh = new Mesh;
+	bumpMesh = new Mesh;
+	toonMesh = new Mesh;
 
-	transform1 = new Transform;
-	transform2 = new Transform;
+	fogTrans = new Transform;
+	bumpTrans = new Transform;
+	toonTrans = new Transform;
 
 }
 
@@ -28,24 +31,27 @@ DefaultScene::~DefaultScene()
 void DefaultScene::initaliseScene(Camera& myCamera)
 {
 
-	//Load shader
+	//Load shaders
 	fog->init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag");
 	bump->init("..\\res\\bump.vert", "..\\res\\bump.frag");
+	toon->init("..\\res\\shaderToon.vert", "..\\res\\shaderToon.frag");
 
-	//Load texture
-	texture1->load("..\\res\\rock.jpg");
+	//Load textures
+	rock->load("..\\res\\rock.jpg");
 
 	//Load bumpmap
 	bumpMapping->loadNormals("..\\res\\n.jpg");
 
 	//Load mesh
-	mesh1->loadModel("..\\res\\ball.obj");
-	mesh2->loadModel("..\\res\\monkey3.obj");
+	fogMesh->loadModel("..\\res\\ball.obj");
+	bumpMesh->loadModel("..\\res\\monkey3.obj");
+	toonMesh->loadModel("..\\res\\monkey3.obj");
 
 	//Set camera lookat
-	myCamera.setLook(*transform1->GetPos());
+	myCamera.setLook(*fogTrans->GetPos());
 	myCamera.setPos(glm::vec3(2, 0, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
+
 };
 
 //Reset the game
@@ -74,28 +80,40 @@ void DefaultScene::draw(time_t dt, Camera myCamera)
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
-	transform1->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
-	transform1->SetRot(glm::vec3(0.0, 0.0, counter * 5));
-	transform1->SetScale(glm::vec3(0.6, 0.6, 0.6));
+	fogTrans->SetPos(glm::vec3(0, 0, 0));
+	fogTrans->SetRot(glm::vec3(0.0, counter * 1, 0.0));
+	fogTrans->SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 	//Update transform position
-	transform2->SetPos(glm::vec3(-sinf(-counter), -0.5, 10.0 + (-sinf(-counter) * 8)));
-	transform2->SetRot(glm::vec3(0.0, 0.0, -counter * 5));
-	transform2->SetScale(glm::vec3(0.6, 0.6, 0.6));
+	bumpTrans->SetPos(glm::vec3(-2, 0, 0));
+	bumpTrans->SetRot(glm::vec3(0.0, counter * 1, 0.0));
+	bumpTrans->SetScale(glm::vec3(0.6, 0.6, 0.6));
+
+	//Update transform position
+	toonTrans->SetPos(glm::vec3(2, 0, 0));
+	toonTrans->SetRot(glm::vec3(0.0, counter * 1, 0.0));
+	toonTrans->SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 	//Bind fog shader
 	fog->Bind();
 	linkFogShader();
-	fog->Update(*transform1, myCamera);
+	fog->Update(*fogTrans, myCamera);
 
-	mesh1->draw();
+	fogMesh->draw();
 
 	//Bind bump shader
 	bump->Bind();
 	linkFogShader();
-	bump->Update(*transform2, myCamera);
+	bump->Update(*bumpTrans, myCamera);
 
-	mesh2->draw();
+	bumpMesh->draw();
+
+	//Bind toon shader
+	toon->Bind();
+	linkToonShader();
+	toon->Update(*toonTrans, myCamera);
+
+	toonMesh->draw();
 
 };
 
@@ -109,7 +127,7 @@ void DefaultScene::linkFogShader()
 
 	//set textures
 	GLuint t1L = glGetUniformLocation(fog->getID(), "diffuse"); //texture 1 location
-	texture1->Bind(0);
+	rock->Bind(0);
 	glUniform1i(t1L, 0);
 
 }
@@ -121,12 +139,19 @@ void DefaultScene::linkBumpMapping()
 
 	//set textures
 	glActiveTexture(GL_TEXTURE0); //set acitve texture unit
-	glBindTexture(GL_TEXTURE_2D, texture1->getID());
+	glBindTexture(GL_TEXTURE_2D, rock->getID());
 	glUniform1i(t1L, 0);
 
 	glActiveTexture(GL_TEXTURE1); //set acitve texture unit
 	glBindTexture(GL_TEXTURE_2D, bumpMapping->getID());
 	glUniform1i(t2L, 1);
+}
+
+void DefaultScene::linkToonShader()
+{
+	toon->setMat4("modelMatrix", toonTrans->GetModel());
+	toon->setVec3("lightDir", glm::vec3(0.5f, 0.5f, -0.5f));
+
 }
 
 //Cleanup
@@ -138,22 +163,28 @@ void DefaultScene::cleanup()
 	delete bump;
 	bump = nullptr;
 
-	delete texture1;
-	texture1 = nullptr;
+	delete rock;
+	rock = nullptr;
 
 	delete bumpMapping;
 	bumpMapping = nullptr;
 
-	delete mesh1;
-	mesh1 = nullptr;
+	delete fogMesh;
+	fogMesh = nullptr;
 
-	delete mesh2;
-	mesh2 = nullptr;
+	delete bumpMesh;
+	bumpMesh = nullptr;
 
-	delete transform1;
-	transform1 = nullptr;
+	delete toonMesh;
+	toonMesh = nullptr;
 
-	delete transform2;
-	transform2 = nullptr;
+	delete fogTrans;
+	fogTrans = nullptr;
+
+	delete bumpTrans;
+	bumpTrans = nullptr;
+
+	delete toonTrans;
+	toonTrans = nullptr;
 
 }

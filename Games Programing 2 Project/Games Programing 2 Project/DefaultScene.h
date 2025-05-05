@@ -24,24 +24,28 @@ protected:
 	//Link Shaders
 	void linkFogShader(); //Link fog shader
 	void linkBumpMapping(); //Link bump mapping
+	void linkToonShader(); //Link toon shader
 
 	void cleanup();
 
 	//Shaders
 	Shader* fog;
 	Shader* bump;
+	Shader* toon;
 
 	//Textures
-	Texture* texture1;
+	Texture* rock;
 	Texture* bumpMapping;
 
 	//Meshes
-	Mesh* mesh1;
-	Mesh* mesh2;
+	Mesh* fogMesh;
+	Mesh* bumpMesh;
+	Mesh* toonMesh;
 
 	//Transforms
-	Transform* transform1;
-	Transform* transform2;
+	Transform* fogTrans;
+	Transform* bumpTrans;
+	Transform* toonTrans;
 
 	float counter = 1;
 

@@ -26,7 +26,6 @@ protected:
 	void cleanup();
 
 	Shader* toon;
-	Texture* texture;
 	Mesh* mesh;
 	Transform* transform;
 

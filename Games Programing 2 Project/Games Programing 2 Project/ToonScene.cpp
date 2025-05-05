@@ -5,7 +5,6 @@ ToonScene::ToonScene()
 {
 
 	toon = new Shader;
-	texture = new Texture;
 	mesh = new Mesh;
 	transform = new Transform;
 }
@@ -21,10 +20,7 @@ void ToonScene::initaliseScene(Camera& myCamera)
 {
 
 	//Load shader
-	toon->init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag");
-
-	//Load texture
-	texture->load("..\\res\\bricks.jpg");
+	toon->init("..\\res\\shaderToon.vert", "..\\res\\shaderToon.frag");
 
 	//Load mesh
 	mesh->loadModel("..\\res\\monkey3.obj");
@@ -76,16 +72,8 @@ void ToonScene::draw(time_t dt, Camera myCamera)
 
 void ToonScene::linkToonShader()
 {
-	toon->setFloat("maxDist", 20.0f);
-	toon->setFloat("minDist", 0.0f);
-	toon->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
-
-	toon->setInt("rimType", 0);
-
-	//set textures
-	GLuint t1L = glGetUniformLocation(toon->getID(), "diffuse"); //texture 1 location
-	texture->Bind(0);
-	glUniform1i(t1L, 0);
+	toon->setMat4("modelMatrix", transform->GetModel());
+	toon->setVec3("lightDir", glm::vec3(0.5f, 0.5f, -0.5f));
 
 }
 
@@ -94,9 +82,6 @@ void ToonScene::cleanup()
 {
 	delete toon;
 	toon = nullptr;
-
-	delete texture;
-	texture = nullptr;
 
 	delete mesh;
 	mesh = nullptr;
