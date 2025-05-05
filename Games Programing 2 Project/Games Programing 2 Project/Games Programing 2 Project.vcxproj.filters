@@ -93,20 +93,17 @@
     <ClCompile Include="NormalTextureScene.cpp">
       <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
-    <ClCompile Include="PlanetScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
-    </ClCompile>
     <ClCompile Include="PointLightScene.cpp">
       <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
     <ClCompile Include="SpotLightScene.cpp">
       <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
-    <ClCompile Include="ToonScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
-    </ClCompile>
     <ClCompile Include="WaterScene.cpp">
       <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="ToonScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,20 +155,17 @@
     <ClInclude Include="NormalTextureScene.h">
       <Filter>Header Files\Scenes\WIP</Filter>
     </ClInclude>
-    <ClInclude Include="PlanetScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
-    </ClInclude>
     <ClInclude Include="PointLightScene.h">
       <Filter>Header Files\Scenes\WIP</Filter>
     </ClInclude>
     <ClInclude Include="SpotLightScene.h">
       <Filter>Header Files\Scenes\WIP</Filter>
     </ClInclude>
-    <ClInclude Include="ToonScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
-    </ClInclude>
     <ClInclude Include="WaterScene.h">
       <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="ToonScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,12 +197,6 @@
       <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\shaderToon.vert">
-      <Filter>Resource Files\Shaders\Vertex</Filter>
-    </None>
-    <None Include="..\res\what.frag">
-      <Filter>Resource Files\Shaders\Fragment</Filter>
-    </None>
-    <None Include="..\res\what.vert">
       <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
   </ItemGroup>

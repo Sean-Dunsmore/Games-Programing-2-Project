@@ -9,7 +9,6 @@
 #include "AmbientLightScene.h"
 #include "FadeScene.h"
 #include "NormalTextureScene.h"
-#include "PlanetScene.h"
 #include "PointLightScene.h"
 #include "SpotLightScene.h"
 #include "ToonScene.h"
@@ -24,7 +23,6 @@ enum CurrentScene
 	Ambient,
 	Fade,
 	NormalTex,
-	Planet,
 	PointLight,
 	SpotLight,
 	Toon,

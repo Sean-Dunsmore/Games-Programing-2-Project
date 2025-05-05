@@ -148,7 +148,6 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="NormalTextureScene.cpp" />
     <ClCompile Include="obj_loader.cpp" />
-    <ClCompile Include="PlanetScene.cpp" />
     <ClCompile Include="PointLightScene.cpp" />
     <ClCompile Include="RimScene.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -170,7 +169,6 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="NormalTextureScene.h" />
     <ClInclude Include="obj_loader.h" />
-    <ClInclude Include="PlanetScene.h" />
     <ClInclude Include="PointLightScene.h" />
     <ClInclude Include="RimScene.h" />
     <ClInclude Include="Scene.h" />
@@ -193,8 +191,6 @@
     <None Include="..\res\Rim.vert" />
     <None Include="..\res\shaderToon.frag" />
     <None Include="..\res\shaderToon.vert" />
-    <None Include="..\res\what.frag" />
-    <None Include="..\res\what.vert" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\res\background.wav" />

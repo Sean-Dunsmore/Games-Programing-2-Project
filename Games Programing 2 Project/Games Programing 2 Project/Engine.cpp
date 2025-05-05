@@ -194,9 +194,6 @@ void Engine::nextScene() //Next Scene
 		scene = NormalTex;
 		break;
 	case NormalTex:
-		scene = Planet;
-		break;
-	case Planet:
 		scene = PointLight;
 		break;
 	case PointLight:
@@ -239,11 +236,8 @@ void Engine::lastScene() //Next Scene
 	case NormalTex:
 		scene = Fade;
 		break;
-	case Planet:
-		scene = NormalTex;
-		break;
 	case PointLight:
-		scene = Planet;
+		scene = NormalTex;
 		break;
 	case SpotLight:
 		scene = PointLight;
@@ -289,10 +283,6 @@ void Engine::changeScene() //Change Scene
 		break;
 	case NormalTex:
 			scenePointer = new NormalTextureScene;
-			scenePointer->initaliseScene(myCamera);
-		break;
-	case Planet:
-			scenePointer = new PlanetScene;
 			scenePointer->initaliseScene(myCamera);
 		break;
 	case PointLight:
