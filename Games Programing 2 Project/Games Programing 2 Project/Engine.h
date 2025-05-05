@@ -57,16 +57,8 @@ private:
 
 	//Link shaders
 	//TODO: Actually these should be in the individual scenes probably
-	//void linkBumpMapping();
 	//void linkToon();
-	//void linkRimShader();
 	//void linkWhat();
-
-	//TODO: Implement this stuff i guess
-	//Collision
-	//bool collision(glm::vec3 m1Pos, float m1Rad, glm::vec3 m2Pos, float m2Rad);
-	//Audio
-	//void playAudio(unsigned int Source, glm::vec3 pos);
 
 	void nextScene(); //Next Scene
 

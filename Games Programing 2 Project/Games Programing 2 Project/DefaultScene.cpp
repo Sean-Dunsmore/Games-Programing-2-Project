@@ -4,10 +4,18 @@
 DefaultScene::DefaultScene()
 {
 
-	light = new Shader;
+	fog = new Shader;
+	bump = new Shader;
+
 	texture1 = new Texture;
-	mesh = new Mesh;
-	transform = new Transform;
+	bumpMapping = new Texture;
+
+	mesh1 = new Mesh;
+	mesh2 = new Mesh;
+
+	transform1 = new Transform;
+	transform2 = new Transform;
+
 }
 
 //Deconstructor
@@ -21,16 +29,21 @@ void DefaultScene::initaliseScene(Camera& myCamera)
 {
 
 	//Load shader
-	light->init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag");
+	fog->init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag");
+	bump->init("..\\res\\bump.vert", "..\\res\\bump.frag");
 
 	//Load texture
-	texture1->load("..\\res\\bricks.jpg");
+	texture1->load("..\\res\\rock.jpg");
+
+	//Load bumpmap
+	bumpMapping->loadNormals("..\\res\\n.jpg");
 
 	//Load mesh
-	mesh->loadModel("..\\res\\monkey3.obj");
+	mesh1->loadModel("..\\res\\ball.obj");
+	mesh2->loadModel("..\\res\\monkey3.obj");
 
 	//Set camera lookat
-	myCamera.setLook(*transform->GetPos());
+	myCamera.setLook(*transform1->GetPos());
 	myCamera.setPos(glm::vec3(2, 0, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
 };
@@ -61,46 +74,86 @@ void DefaultScene::draw(time_t dt, Camera myCamera)
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
-	transform->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
-	transform->SetRot(glm::vec3(0.0, 0.0, counter * 5));
-	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
+	transform1->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
+	transform1->SetRot(glm::vec3(0.0, 0.0, counter * 5));
+	transform1->SetScale(glm::vec3(0.6, 0.6, 0.6));
+
+	//Update transform position
+	transform2->SetPos(glm::vec3(-sinf(-counter), -0.5, 10.0 + (-sinf(-counter) * 8)));
+	transform2->SetRot(glm::vec3(0.0, 0.0, -counter * 5));
+	transform2->SetScale(glm::vec3(0.6, 0.6, 0.6));
+
+	//Bind fog shader
+	fog->Bind();
+	linkFogShader();
+	fog->Update(*transform1, myCamera);
+
+	mesh1->draw();
 
 	//Bind bump shader
-	light->Bind();
-	linkLightShader();
-	light->Update(*transform, myCamera);
+	bump->Bind();
+	linkFogShader();
+	bump->Update(*transform2, myCamera);
 
-	mesh->draw();
+	mesh2->draw();
 
 };
 
-void DefaultScene::linkLightShader()
+void DefaultScene::linkFogShader()
 {
-	light->setFloat("maxDist", 20.0f);
-	light->setFloat("minDist", 0.0f);
-	light->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
+	fog->setFloat("maxDist", 20.0f);
+	fog->setFloat("minDist", 0.0f);
+	fog->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
 
-	light->setInt("rimType", lightType);
+	fog->setInt("rimType", 0);
 
 	//set textures
-	GLuint t1L = glGetUniformLocation(light->getID(), "diffuse"); //texture 1 location
+	GLuint t1L = glGetUniformLocation(fog->getID(), "diffuse"); //texture 1 location
 	texture1->Bind(0);
 	glUniform1i(t1L, 0);
 
 }
 
+void DefaultScene::linkBumpMapping()
+{
+	GLuint t1L = glGetUniformLocation(bump->getID(), "diffuse"); //texture 1 location
+	GLuint t2L = glGetUniformLocation(bump->getID(), "normalT");
+
+	//set textures
+	glActiveTexture(GL_TEXTURE0); //set acitve texture unit
+	glBindTexture(GL_TEXTURE_2D, texture1->getID());
+	glUniform1i(t1L, 0);
+
+	glActiveTexture(GL_TEXTURE1); //set acitve texture unit
+	glBindTexture(GL_TEXTURE_2D, bumpMapping->getID());
+	glUniform1i(t2L, 1);
+}
+
 //Cleanup
 void DefaultScene::cleanup()
 {
-	delete light;
-	light = nullptr;
+	delete fog;
+	fog = nullptr;
+
+	delete bump;
+	bump = nullptr;
 
 	delete texture1;
 	texture1 = nullptr;
 
-	delete mesh;
-	mesh = nullptr;
+	delete bumpMapping;
+	bumpMapping = nullptr;
 
-	delete transform;
-	transform = nullptr;
+	delete mesh1;
+	mesh1 = nullptr;
+
+	delete mesh2;
+	mesh2 = nullptr;
+
+	delete transform1;
+	transform1 = nullptr;
+
+	delete transform2;
+	transform2 = nullptr;
+
 }

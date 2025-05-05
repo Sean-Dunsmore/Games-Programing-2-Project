@@ -22,19 +22,28 @@ public:
 protected:
 
 	//Link Shaders
-	void linkLightShader(); //Link light shader
+	void linkFogShader(); //Link fog shader
+	void linkBumpMapping(); //Link bump mapping
 
 	void cleanup();
 
-	Shader* light;
+	//Shaders
+	Shader* fog;
+	Shader* bump;
+
+	//Textures
 	Texture* texture1;
-	Texture* texture2;
-	Texture* texture3;
-	Mesh* mesh;
-	Transform* transform;
+	Texture* bumpMapping;
+
+	//Meshes
+	Mesh* mesh1;
+	Mesh* mesh2;
+
+	//Transforms
+	Transform* transform1;
+	Transform* transform2;
 
 	float counter = 1;
-	int lightType = 0;
 
 };
 
