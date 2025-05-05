@@ -1,0 +1,38 @@
+#pragma once
+#include "Scene.h"
+#include <windows.h>
+
+class NormalTextureScene : public Scene
+{
+public:
+
+	NormalTextureScene(); //Constructor
+	~NormalTextureScene(); //Deconstructor
+
+	void initaliseScene(Camera& myCamera); //Initilize Scene
+
+	void resetScene(); //Reset Game
+
+	void processInput(time_t dt); //Process inputs from user
+
+	void updateScene(time_t dt); //Main update function
+
+	void draw(time_t dt, Camera myCamera); //Set visuals from game data
+
+protected:
+
+	void linkNormalTexShader(); //Link light shader
+
+	void cleanup();
+
+	Shader* normalTex;
+	Texture* texture1;
+	Texture* texture2;
+	Texture* texture3;
+	Mesh* mesh;
+	Transform* transform;
+
+	float counter = 1;
+
+};
+

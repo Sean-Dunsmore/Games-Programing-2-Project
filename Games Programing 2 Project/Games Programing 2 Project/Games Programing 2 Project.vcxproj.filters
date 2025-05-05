@@ -40,6 +40,12 @@
     <Filter Include="Resource Files\Sound">
       <UniqueIdentifier>{8fa4591d-9ae3-4df7-adc0-50bbb5fb5cb8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scenes\WIP">
+      <UniqueIdentifier>{722908e3-e780-44e2-8107-f3944048bd18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes\WIP">
+      <UniqueIdentifier>{ddcb3076-0eee-44b7-8c1c-72517aa36764}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -74,6 +80,33 @@
     </ClCompile>
     <ClCompile Include="RimScene.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AmbientLightScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalTextureScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLightScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLightScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="ToonScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +145,33 @@
     </ClInclude>
     <ClInclude Include="RimScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="AmbientLightScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalTextureScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLightScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLightScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="ToonScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterScene.h">
+      <Filter>Header Files\Scenes\WIP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

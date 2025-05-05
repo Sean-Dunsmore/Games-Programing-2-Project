@@ -138,31 +138,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AmbientLightScene.cpp" />
     <ClCompile Include="BumpScene.cpp" />
+    <ClCompile Include="DefaultScene.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="FadeScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="NormalTextureScene.cpp" />
     <ClCompile Include="obj_loader.cpp" />
+    <ClCompile Include="PlanetScene.cpp" />
+    <ClCompile Include="PointLightScene.cpp" />
     <ClCompile Include="RimScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SpotLightScene.cpp" />
     <ClCompile Include="stb_image.c" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="ToonScene.cpp" />
+    <ClCompile Include="WaterScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AmbientLightScene.h" />
     <ClInclude Include="BumpScene.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="DefaultScene.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="FadeScene.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="NormalTextureScene.h" />
     <ClInclude Include="obj_loader.h" />
+    <ClInclude Include="PlanetScene.h" />
+    <ClInclude Include="PointLightScene.h" />
     <ClInclude Include="RimScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SpotLightScene.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="ToonScene.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="WaterScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\res\bump.frag" />
