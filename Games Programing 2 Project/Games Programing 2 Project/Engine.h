@@ -1,16 +1,34 @@
 #pragma once
 #include <SDL\SDL.h>
 #include <GL/glew.h>
-#include "BumpScene.h"
 #include "Display.h" 
 #include "Camera.h"
+#include "DefaultScene.h"
+#include "BumpScene.h"
 #include "RimScene.h"
+#include "AmbientLightScene.h"
+#include "FadeScene.h"
+#include "NormalTextureScene.h"
+#include "PlanetScene.h"
+#include "PointLightScene.h"
+#include "SpotLightScene.h"
+#include "ToonScene.h"
+#include "WaterScene.h"
 #include <windows.h>
 
 enum CurrentScene
 {
+	Default,
 	Bump,
-	Fog
+	Fog,
+	Ambient,
+	Fade,
+	NormalTex,
+	Planet,
+	PointLight,
+	SpotLight,
+	Toon,
+	Water
 };
 
 //The Engine class contains functionality that will be shared between both games

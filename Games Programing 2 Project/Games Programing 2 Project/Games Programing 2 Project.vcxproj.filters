@@ -81,9 +81,6 @@
     <ClCompile Include="RimScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="WaterScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AmbientLightScene.cpp">
       <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
@@ -106,6 +103,9 @@
       <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
     <ClCompile Include="ToonScene.cpp">
+      <Filter>Source Files\Scenes\WIP</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterScene.cpp">
       <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
   </ItemGroup>

@@ -36,7 +36,7 @@ void Engine::init()
 	myCamera.initCamera(glm::vec3(2, 0, -4), 70.0f, (float)gameDisplay.getWidth() / gameDisplay.getHeight(), 0.01f, 1000.0f);
 
 	//Set starting scene
-	scene = Bump;
+	scene = Default;
 	changeScene();
 
 	//Start main loop
@@ -170,11 +170,38 @@ void Engine::nextScene() //Next Scene
 
 	switch (scene)
 	{
+	case Default:
+		scene = Bump;
+		break;
 	case Bump:
 		scene = Fog;
 		break;
 	case Fog:
-		scene = Bump;
+		scene = Ambient;
+		break;
+	case Ambient:
+		scene = Fade;
+		break;
+	case Fade:
+		scene = NormalTex;
+		break;
+	case NormalTex:
+		scene = Planet;
+		break;
+	case Planet:
+		scene = PointLight;
+		break;
+	case PointLight:
+		scene = SpotLight;
+		break;
+	case SpotLight:
+		scene = Toon;
+		break;
+	case Toon:
+		scene = Water;
+		break;
+	case Water:
+		scene = Default;
 		break;
 	}
 
@@ -186,11 +213,38 @@ void Engine::lastScene() //Next Scene
 
 	switch (scene)
 	{
+	case Default:
+		scene = Water;
+		break;
 	case Bump:
-		scene = Fog;
+		scene = Default;
 		break;
 	case Fog:
 		scene = Bump;
+		break;
+	case Ambient:
+		scene = Fog;
+		break;
+	case Fade:
+		scene = Ambient;
+		break;
+	case NormalTex:
+		scene = Fade;
+		break;
+	case Planet:
+		scene = NormalTex;
+		break;
+	case PointLight:
+		scene = Planet;
+		break;
+	case SpotLight:
+		scene = PointLight;
+		break;
+	case Toon:
+		scene = SpotLight;
+		break;
+	case Water:
+		scene = Toon;
 		break;
 	}
 
@@ -205,6 +259,10 @@ void Engine::changeScene() //Change Scene
 
 	switch (scene)
 	{
+	case Default:
+			scenePointer = new DefaultScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
 	case Bump:
 			scenePointer = new BumpScene;
 			scenePointer->initaliseScene(myCamera);
@@ -213,7 +271,40 @@ void Engine::changeScene() //Change Scene
 			scenePointer = new RimScene;
 			scenePointer->initaliseScene(myCamera);
 		break;
+	case Ambient:
+			scenePointer = new AmbientLightScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	case Fade:
+			scenePointer = new FadeScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	case NormalTex:
+			scenePointer = new NormalTextureScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	case Planet:
+			scenePointer = new PlanetScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	case PointLight:
+			scenePointer = new PointLightScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	case SpotLight:
+			scenePointer = new SpotLightScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	case Toon:
+			scenePointer = new ToonScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
+	case Water:
+			scenePointer = new WaterScene;
+			scenePointer->initaliseScene(myCamera);
+		break;
 	}
+
 }
 
 //Cleanup pointers
