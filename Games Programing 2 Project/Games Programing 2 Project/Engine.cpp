@@ -95,13 +95,23 @@ void Engine::processInput()
 	}
 
 	//Change Scene
-	if (GetKeyState('J') & 0x8000)
+	//Quick fix to prevent multiple inputs in a frame
+	if (inputTimer < 0)
 	{
-		lastScene(); //last Scene
+		if (GetKeyState('J') & 0x8000)
+		{
+			lastScene(); //last Scene
+			inputTimer = 500;
+		}
+		else if (GetKeyState('K') & 0x8000)
+		{
+			nextScene(); //Next Scene
+			inputTimer = 500;
+		}
 	}
-	else if (GetKeyState('K') & 0x8000)
+	else
 	{
-		nextScene(); //Next Scene
+		inputTimer = inputTimer - 1 * deltatime;
 	}
 
 	//Check for exit game

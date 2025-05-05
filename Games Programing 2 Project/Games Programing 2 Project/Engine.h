@@ -108,5 +108,8 @@ private:
 	//Textures TODO: Rework into list/vector or something
 	//Texture texture1;
 
+	//Quick fix to prevent multiple inputs in a frame
+	float inputTimer = 0;
+
 };
 
