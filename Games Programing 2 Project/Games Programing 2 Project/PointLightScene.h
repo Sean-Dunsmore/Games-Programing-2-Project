@@ -21,7 +21,7 @@ public:
 
 protected:
 
-	void linkLightShader(); //Link light shader
+	void linkLightShader(Camera myCamera); //Link light shader
 
 	void cleanup();
 
@@ -30,8 +30,19 @@ protected:
 	Mesh* mesh;
 	Transform* transform;
 
+	Mesh* lightMesh;
+	Transform* lightTransform;
+
 	float counter = 1;
-	int lightType = 0;
+	int lightType = 1;
+
+	float RotX = 3;
+	float RotY = -1;
+	float RotZ = 0;
+
+	float PosX = 0;
+	float PosY = 10;
+	float PosZ = 0;
 
 };
 

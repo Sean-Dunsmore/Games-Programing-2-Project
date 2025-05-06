@@ -34,7 +34,7 @@ protected:
 	Transform* lightTransform;
 
 	float counter = 1;
-	int lightType = 2;
+	int lightType = 0;
 
 	float RotX = 3;
 	float RotY = -1;
