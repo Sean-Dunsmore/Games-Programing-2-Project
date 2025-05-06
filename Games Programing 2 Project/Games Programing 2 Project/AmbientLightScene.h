@@ -30,12 +30,19 @@ protected:
 	Mesh* mesh;
 	Transform* transform;
 
+	Mesh* lightMesh;
+	Transform* lightTransform;
+
 	float counter = 1;
-	int lightType = 0;
+	int lightType = 2;
 
 	float RotX = 3;
-	float RotY = 0;
+	float RotY = -1;
 	float RotZ = 0;
+
+	float PosX = 0;
+	float PosY = 10;
+	float PosZ = 0;
 
 };
 

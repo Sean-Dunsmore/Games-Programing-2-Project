@@ -8,6 +8,10 @@ AmbientLightScene::AmbientLightScene()
 	texture = new Texture;
 	mesh = new Mesh;
 	transform = new Transform;
+
+	lightMesh = new Mesh;
+	lightTransform = new Transform;
+
 }
 
 //Deconstructor
@@ -28,6 +32,7 @@ void AmbientLightScene::initaliseScene(Camera& myCamera)
 
 	//Load mesh
 	mesh->loadModel("..\\res\\surface.obj");
+	lightMesh->loadModel("..\\res\\ball.obj");
 
 	//Set camera lookat
 	myCamera.setLook(*transform->GetPos());
@@ -56,6 +61,19 @@ void AmbientLightScene::processInput(time_t dt)
 	{
 		RotZ = RotZ + 0.001 * dt;
 	}
+
+	if (GetKeyState('7') & 0x8000)
+	{
+		PosX = PosX + 0.001 * dt;
+	}
+	if (GetKeyState('8') & 0x8000)
+	{
+		PosY = PosY + 0.001 * dt;
+	}
+	if (GetKeyState('9') & 0x8000)
+	{
+		PosZ = PosZ + 0.001 * dt;
+	}
 };
 
 //Main update function
@@ -73,8 +91,13 @@ void AmbientLightScene::draw(time_t dt, Camera myCamera)
 
 	//Update transform position
 	transform->SetPos(glm::vec3(0, 1, 0.0));
-	transform->SetRot(glm::vec3(RotX, RotY, RotZ));
+	transform->SetRot(glm::vec3(3, 0, 0));
 	transform->SetScale(glm::vec3(0.1, 0.1, 0.1));
+
+	//Update light position
+	lightTransform->SetPos(glm::vec3(PosX, PosY, PosZ));
+	lightTransform->SetRot(glm::vec3(RotX, RotY, RotZ));
+	lightTransform->SetScale(glm::vec3(0.1, 0.1, 0.1));
 
 	//Bind bump shader
 	light->Bind();
@@ -83,6 +106,8 @@ void AmbientLightScene::draw(time_t dt, Camera myCamera)
 
 	mesh->draw();
 
+	light->Update(*lightTransform, myCamera);
+	lightMesh->draw();
 };
 
 void AmbientLightScene::linkLightShader(Camera myCamera)
@@ -93,12 +118,13 @@ void AmbientLightScene::linkLightShader(Camera myCamera)
 	light->setVec3("camPos", myCamera.getPos());
 
 	//Frag
-	light->setVec3("lightDir", glm::vec3(0.5f, 0.5f, -0.5f));
+	light->setVec3("lightDir", glm::vec3(RotX, RotY, RotZ));
+	light->setVec3("lightPos", glm::vec3(PosX, PosY, PosZ));
 
 	light->setVec4("ambient", glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	light->setVec4("diffuse", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 	light->setVec4("specular", glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
-	light->setInt("lightType", 0);
+	light->setInt("lightType", lightType);
 
 	//set textures
 	GLuint t1L = glGetUniformLocation(light->getID(), "sampler"); //texture 1 location
@@ -121,4 +147,11 @@ void AmbientLightScene::cleanup()
 
 	delete transform;
 	transform = nullptr;
+
+	delete lightMesh;
+	lightMesh = nullptr;
+
+	delete lightTransform;
+	lightTransform = nullptr;
+
 }

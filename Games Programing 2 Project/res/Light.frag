@@ -4,6 +4,7 @@ uniform vec3 lightDir;
 in vec3 normal;
 in vec2 tC;
 in vec3 viewDirection;
+in vec3 position;
 out vec4 FragColour;
 
 uniform sampler2D sampler;
@@ -11,6 +12,7 @@ uniform vec4 ambient;
 uniform vec4 diffuse;
 uniform vec4 specular;
 uniform int lightType;
+uniform vec3 lightPos;
 
 vec4 directionalLight()
 {
@@ -26,8 +28,11 @@ vec4 directionalLight()
 
 vec4 pointLight()
 {
+	//Vector representing direction from light to vertex
+	vec3 lightVector = normalize(lightPos - position);
+
 	//Intensity = how aligned is the normal to the light direction, 1 = aligned 0 = not aligned
-	float intensity = dot(lightDir, normal);
+	float intensity = dot(lightVector, normal);
 
 	//Calculate diffuse
 	vec4 colour;
@@ -39,12 +44,30 @@ vec4 pointLight()
 
 vec4 spotLight()
 {
-	//Intensity = how aligned is the normal to the light direction, 1 = aligned 0 = not aligned
-	float intensity = dot(lightDir, normal);
+
+	vec3 lightVector = normalize(lightPos - position);
+	float spotFactor = clamp(dot(lightVector, lightDir),0.0,1.0);
+
+	float cutOff = 0.9f;
 
 	//Calculate diffuse
-	vec4 colour;
-	colour = clamp(diffuse * intensity,0.0,1.0);
+	vec4 colour = vec4(0.0,0.0,0.0,1.0);
+
+	if (spotFactor > cutOff)
+	{
+		//Intensity = how aligned is the normal to the light direction, 1 = aligned 0 = not aligned
+		float intensity1 = clamp(dot(lightVector, normal),0.0,1.0);
+		//float intensity2 = clamp(dot(normal, intensity1),0.0,1.0);
+
+		float intensity2 = intensity1 * (1.0f - ((1.0f - spotFactor) / (1.0 - cutOff)));
+
+		colour = clamp(diffuse * intensity2,0.0,1.0);
+	}
+	else
+	{
+		colour = vec4(0.0,0.0,0.0,1.0);
+	}
+
 	return colour;
 }
 
