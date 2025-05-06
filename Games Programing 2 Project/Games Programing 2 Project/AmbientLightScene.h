@@ -21,7 +21,7 @@ public:
 
 protected:
 
-	void linkLightShader(); //Link light shader
+	void linkLightShader(Camera myCamera); //Link light shader
 
 	void cleanup();
 
@@ -32,6 +32,10 @@ protected:
 
 	float counter = 1;
 	int lightType = 0;
+
+	float RotX = 3;
+	float RotY = 0;
+	float RotZ = 0;
 
 };
 

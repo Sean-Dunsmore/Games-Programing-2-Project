@@ -21,17 +21,17 @@ void AmbientLightScene::initaliseScene(Camera& myCamera)
 {
 
 	//Load shader
-	light->init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag");
+	light->init("..\\res\\Light.vert", "..\\res\\Light.frag");
 
 	//Load texture
-	texture->load("..\\res\\bricks.jpg");
+	texture->load("..\\res\\white.jpg");
 
 	//Load mesh
-	mesh->loadModel("..\\res\\monkey3.obj");
+	mesh->loadModel("..\\res\\surface.obj");
 
 	//Set camera lookat
 	myCamera.setLook(*transform->GetPos());
-	myCamera.setPos(glm::vec3(2, 0, -4));
+	myCamera.setPos(glm::vec3(2, 5, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
 };
 
@@ -44,7 +44,18 @@ void AmbientLightScene::resetScene()
 //Process inputs from user
 void AmbientLightScene::processInput(time_t dt)
 {
-
+	if (GetKeyState('1') & 0x8000)
+	{
+		RotX = RotX + 0.001 * dt;
+	}
+	if (GetKeyState('2') & 0x8000)
+	{
+		RotY = RotY + 0.001 * dt;
+	}
+	if (GetKeyState('3') & 0x8000)
+	{
+		RotZ = RotZ + 0.001 * dt;
+	}
 };
 
 //Main update function
@@ -61,29 +72,36 @@ void AmbientLightScene::draw(time_t dt, Camera myCamera)
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
-	transform->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
-	transform->SetRot(glm::vec3(0.0, 0.0, counter * 5));
-	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
+	transform->SetPos(glm::vec3(0, 1, 0.0));
+	transform->SetRot(glm::vec3(RotX, RotY, RotZ));
+	transform->SetScale(glm::vec3(0.1, 0.1, 0.1));
 
 	//Bind bump shader
 	light->Bind();
-	linkLightShader();
+	linkLightShader(myCamera);
 	light->Update(*transform, myCamera);
 
 	mesh->draw();
 
 };
 
-void AmbientLightScene::linkLightShader()
+void AmbientLightScene::linkLightShader(Camera myCamera)
 {
-	light->setFloat("maxDist", 20.0f);
-	light->setFloat("minDist", 0.0f);
-	light->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
 
-	light->setInt("rimType", lightType);
+	//Vert 
+	light->setMat4("modelMatrix", transform->GetModel());
+	light->setVec3("camPos", myCamera.getPos());
+
+	//Frag
+	light->setVec3("lightDir", glm::vec3(0.5f, 0.5f, -0.5f));
+
+	light->setVec4("ambient", glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	light->setVec4("diffuse", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+	light->setVec4("specular", glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	light->setInt("lightType", 0);
 
 	//set textures
-	GLuint t1L = glGetUniformLocation(light->getID(), "diffuse"); //texture 1 location
+	GLuint t1L = glGetUniformLocation(light->getID(), "sampler"); //texture 1 location
 	texture->Bind(0);
 	glUniform1i(t1L, 0);
 

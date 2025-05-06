@@ -199,6 +199,12 @@
     <None Include="..\res\shaderToon.vert">
       <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
+    <None Include="..\res\Light.frag">
+      <Filter>Resource Files\Shaders\Fragment</Filter>
+    </None>
+    <None Include="..\res\Light.vert">
+      <Filter>Resource Files\Shaders\Vertex</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\res\background.wav">
