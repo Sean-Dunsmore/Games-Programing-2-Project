@@ -40,12 +40,6 @@
     <Filter Include="Resource Files\Sound">
       <UniqueIdentifier>{8fa4591d-9ae3-4df7-adc0-50bbb5fb5cb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Scenes\WIP">
-      <UniqueIdentifier>{722908e3-e780-44e2-8107-f3944048bd18}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scenes\WIP">
-      <UniqueIdentifier>{ddcb3076-0eee-44b7-8c1c-72517aa36764}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -81,12 +75,6 @@
     <ClCompile Include="RimScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
-    </ClCompile>
-    <ClCompile Include="NormalTextureScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
-    </ClCompile>
     <ClCompile Include="ToonScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
@@ -103,6 +91,12 @@
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="FadeScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalTextureScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,12 +137,6 @@
     <ClInclude Include="RimScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalTextureScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
-    </ClInclude>
     <ClInclude Include="ToonScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -165,6 +153,12 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="FadeScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalTextureScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -215,6 +209,12 @@
       <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\fade.vert">
+      <Filter>Resource Files\Shaders\Vertex</Filter>
+    </None>
+    <None Include="..\res\normalTex.frag">
+      <Filter>Resource Files\Shaders\Fragment</Filter>
+    </None>
+    <None Include="..\res\normalTex.vert">
       <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
   </ItemGroup>

@@ -53,11 +53,6 @@ private:
 
 	void mainLoop(); //Main loop
 
-	//Link shaders
-	//TODO: Actually these should be in the individual scenes probably
-	//void linkToon();
-	//void linkWhat();
-
 	void nextScene(); //Next Scene
 
 	void lastScene(); //last Scene

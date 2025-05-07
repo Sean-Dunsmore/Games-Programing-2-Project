@@ -34,9 +34,9 @@ void PointLightScene::initaliseScene(Camera& myCamera)
 	lightMesh->loadModel("..\\res\\ball.obj");
 
 	//Set camera lookat
-	myCamera.setLook(*transform->GetPos());
-	myCamera.setPos(glm::vec3(2, 5, -4));
+	myCamera.setPos(glm::vec3(2, 50, -100));
 	myCamera.setUp(glm::vec3(0, 1, 0));
+	myCamera.setLook(glm::vec3(0, 20, 0.0));
 };
 
 //Reset the game

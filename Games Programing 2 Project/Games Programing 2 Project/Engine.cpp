@@ -26,10 +26,6 @@ void Engine::init()
 	//Engine is running
 	isRunning = true;
 
-	//TODO: probably put this in the specific scenes
-	//toonShader.init("..\\res\\shaderToon.vert", "..\\res\\shaderToon.frag"); //new shader
-	//what.init("..\\res\\what.vert", "..\\res\\what.frag");
-
 	//Init Camera
 	myCamera.initCamera(glm::vec3(2, 0, -4), 70.0f, (float)gameDisplay.getWidth() / gameDisplay.getHeight(), 0.01f, 1000.0f);
 

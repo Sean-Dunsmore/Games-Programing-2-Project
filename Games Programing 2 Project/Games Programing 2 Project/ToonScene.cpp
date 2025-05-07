@@ -26,9 +26,9 @@ void ToonScene::initaliseScene(Camera& myCamera)
 	mesh->loadModel("..\\res\\monkey3.obj");
 
 	//Set camera lookat
-	myCamera.setLook(*transform->GetPos());
 	myCamera.setPos(glm::vec3(2, 0, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
+	myCamera.setLook(glm::vec3(0, 0, 0));
 };
 
 //Reset the game
@@ -57,8 +57,8 @@ void ToonScene::draw(time_t dt, Camera myCamera)
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
-	transform->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
-	transform->SetRot(glm::vec3(0.0, 0.0, counter * 5));
+	transform->SetPos(glm::vec3(0, 0, 0));
+	transform->SetRot(glm::vec3(0.0, counter * 1, 0.0));
 	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 	//Bind bump shader

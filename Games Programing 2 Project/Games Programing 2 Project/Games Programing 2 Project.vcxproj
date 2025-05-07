@@ -191,6 +191,8 @@
     <None Include="..\res\Light.vert" />
     <None Include="..\res\noBump.frag" />
     <None Include="..\res\noBump.vert" />
+    <None Include="..\res\normalTex.frag" />
+    <None Include="..\res\normalTex.vert" />
     <None Include="..\res\Rim.frag" />
     <None Include="..\res\Rim.vert" />
     <None Include="..\res\shaderToon.frag" />

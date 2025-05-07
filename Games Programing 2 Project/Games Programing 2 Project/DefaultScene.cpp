@@ -48,9 +48,9 @@ void DefaultScene::initaliseScene(Camera& myCamera)
 	toonMesh->loadModel("..\\res\\monkey3.obj");
 
 	//Set camera lookat
-	myCamera.setLook(*fogTrans->GetPos());
-	myCamera.setPos(glm::vec3(2, 0, -4));
+	myCamera.setPos(glm::vec3(0, 3, -5));
 	myCamera.setUp(glm::vec3(0, 1, 0));
+	myCamera.setLook(glm::vec3(0, 0, 0));
 
 };
 

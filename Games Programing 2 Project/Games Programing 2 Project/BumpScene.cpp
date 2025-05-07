@@ -41,9 +41,9 @@ void BumpScene::initaliseScene(Camera &myCamera)
 	mesh->loadVertexs(vertices, sizeof(vertices) / sizeof(vertices[0]));
 
 	//Set camera lookat
-	myCamera.setLook(*transform->GetPos());
 	myCamera.setPos(glm::vec3(2, 0, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
+	myCamera.setLook(glm::vec3(1.0, 0.0, 0.0));
 };
 
 //Reset the game

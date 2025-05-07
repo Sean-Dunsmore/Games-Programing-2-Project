@@ -30,9 +30,9 @@ void RimScene::initaliseScene(Camera& myCamera)
 	mesh->loadModel("..\\res\\monkey3.obj");
 
 	//Set camera lookat
-	myCamera.setLook(*transform->GetPos());
 	myCamera.setPos(glm::vec3(2, 0, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
+	myCamera.setLook(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
 };
 
 //Reset the game

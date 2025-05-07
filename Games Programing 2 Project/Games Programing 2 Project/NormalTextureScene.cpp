@@ -5,7 +5,7 @@ NormalTextureScene::NormalTextureScene()
 {
 
 	normalTex = new Shader;
-	texture1 = new Texture;
+	texture = new Texture;
 	mesh = new Mesh;
 	transform = new Transform;
 }
@@ -21,18 +21,18 @@ void NormalTextureScene::initaliseScene(Camera& myCamera)
 {
 
 	//Load shader
-	normalTex->init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag");
+	normalTex->init("..\\res\\normalTex.vert", "..\\res\\normalTex.frag");
 
 	//Load texture
-	texture1->load("..\\res\\bricks.jpg");
+	texture->load("..\\res\\white.jpg");
 
 	//Load mesh
 	mesh->loadModel("..\\res\\monkey3.obj");
 
 	//Set camera lookat
-	myCamera.setLook(*transform->GetPos());
 	myCamera.setPos(glm::vec3(2, 0, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
+	myCamera.setLook(glm::vec3(0, 0, 0));
 };
 
 //Reset the game
@@ -61,8 +61,8 @@ void NormalTextureScene::draw(time_t dt, Camera myCamera)
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
-	transform->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
-	transform->SetRot(glm::vec3(0.0, 0.0, counter * 5));
+	transform->SetPos(glm::vec3(0, 0, 0));
+	transform->SetRot(glm::vec3(0.0, counter * 1, 0.0));
 	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 	//Bind bump shader
@@ -76,15 +76,12 @@ void NormalTextureScene::draw(time_t dt, Camera myCamera)
 
 void NormalTextureScene::linkNormalTexShader()
 {
-	normalTex->setFloat("maxDist", 20.0f);
-	normalTex->setFloat("minDist", 0.0f);
-	normalTex->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
 
-	normalTex->setInt("rimType", 0);
+	normalTex->setMat4("modelMatrix", transform->GetModel());
 
 	//set textures
 	GLuint t1L = glGetUniformLocation(normalTex->getID(), "diffuse"); //texture 1 location
-	texture1->Bind(0);
+	texture->Bind(0);
 	glUniform1i(t1L, 0);
 
 }
@@ -95,8 +92,8 @@ void NormalTextureScene::cleanup()
 	delete normalTex;
 	normalTex = nullptr;
 
-	delete texture1;
-	texture1 = nullptr;
+	delete texture;
+	texture = nullptr;
 
 	delete mesh;
 	mesh = nullptr;

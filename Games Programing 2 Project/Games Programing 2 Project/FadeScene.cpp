@@ -32,9 +32,9 @@ void FadeScene::initaliseScene(Camera& myCamera)
 	mesh->loadModel("..\\res\\monkey3.obj");
 
 	//Set camera lookat
-	myCamera.setLook(*transform->GetPos());
 	myCamera.setPos(glm::vec3(2, 0, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
+	myCamera.setLook(glm::vec3(0, 0, 0));
 };
 
 //Reset the game

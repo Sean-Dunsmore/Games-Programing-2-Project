@@ -26,9 +26,7 @@ protected:
 	void cleanup();
 
 	Shader* normalTex;
-	Texture* texture1;
-	Texture* texture2;
-	Texture* texture3;
+	Texture* texture;
 	Mesh* mesh;
 	Transform* transform;
 
