@@ -96,14 +96,14 @@ void DefaultScene::draw(time_t dt, Camera myCamera)
 
 	//Bind fog shader
 	fog->Bind();
-	linkFogShader();
+	linkFogShader(myCamera);
 	fog->Update(*fogTrans, myCamera);
 
 	fogMesh->draw();
 
 	//Bind bump shader
 	bump->Bind();
-	linkFogShader();
+	linkBumpMapping();
 	bump->Update(*bumpTrans, myCamera);
 
 	bumpMesh->draw();
@@ -117,13 +117,18 @@ void DefaultScene::draw(time_t dt, Camera myCamera)
 
 };
 
-void DefaultScene::linkFogShader()
+void DefaultScene::linkFogShader(Camera myCamera)
 {
+	
+
 	fog->setFloat("maxDist", 20.0f);
 	fog->setFloat("minDist", 0.0f);
 	fog->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
 
 	fog->setInt("rimType", 0);
+
+	fog->setVec3("camPos", myCamera.getPos());
+	fog->setMat4("modelMatrix", fogTrans->GetModel());
 
 	//set textures
 	GLuint t1L = glGetUniformLocation(fog->getID(), "diffuse"); //texture 1 location

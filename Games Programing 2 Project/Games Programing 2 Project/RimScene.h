@@ -21,7 +21,7 @@ public:
 
 protected:
 
-	void linkFogShader(); //Link fog shader
+	void linkFogShader(Camera myCamera); //Link fog shader
 
 	void cleanup();
 

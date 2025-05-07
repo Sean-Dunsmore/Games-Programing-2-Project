@@ -22,7 +22,7 @@ public:
 protected:
 
 	//Link Shaders
-	void linkFogShader(); //Link fog shader
+	void linkFogShader(Camera myCamera); //Link fog shader
 	void linkBumpMapping(); //Link bump mapping
 	void linkToonShader(); //Link toon shader
 

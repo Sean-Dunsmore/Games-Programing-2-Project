@@ -81,20 +81,23 @@ void RimScene::draw(time_t dt, Camera myCamera)
 
 	//Bind bump shader
 	fog->Bind();
-	linkFogShader();
+	linkFogShader(myCamera);
 	fog->Update(*transform, myCamera);
 
 	mesh->draw();
 
 };
 
-void RimScene::linkFogShader()
+void RimScene::linkFogShader(Camera myCamera)
 {
 	fog->setFloat("maxDist", 20.0f);
 	fog->setFloat("minDist", 0.0f);
 	fog->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
 
 	fog->setInt("rimType", rimType);
+
+	fog->setVec3("camPos", myCamera.getPos());
+	fog->setMat4("modelMatrix", transform->GetModel());
 
 	//set textures
 	GLuint t1L = glGetUniformLocation(fog->getID(), "diffuse"); //texture 1 location

@@ -30,7 +30,7 @@ void Engine::init()
 	myCamera.initCamera(glm::vec3(2, 0, -4), 70.0f, (float)gameDisplay.getWidth() / gameDisplay.getHeight(), 0.01f, 1000.0f);
 
 	//Set starting scene
-	scene = NormalTex;
+	scene = Default;
 	changeScene();
 
 	//Start main loop

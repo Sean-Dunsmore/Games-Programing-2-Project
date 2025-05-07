@@ -16,7 +16,7 @@ uniform sampler2D diffuse;
 vec3 rim1(vec3 color, vec3 N, vec3 V)
 {
 
-float rimFactor = 1.0 -max(0.0, dot(N,V));
+float rimFactor = max(0.0, 1.0 - dot(N,V));
 float rimIntensity = 0.0;
 
 vec3 rimColor = vec3(1.0,0.0,0.0);
