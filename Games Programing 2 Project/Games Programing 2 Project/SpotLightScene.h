@@ -36,12 +36,12 @@ protected:
 	float counter = 1;
 	int lightType = 2;
 
-	float RotX = 3;
-	float RotY = -1;
-	float RotZ = 0;
+	float RotX = 0.5;
+	float RotY = 2;
+	float RotZ = 0.5;
 
 	float PosX = 0;
-	float PosY = 10;
+	float PosY = 5;
 	float PosZ = 0;
 
 };

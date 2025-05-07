@@ -67,7 +67,7 @@ void PointLightScene::processInput(time_t dt)
 	}
 	if (GetKeyState('8') & 0x8000)
 	{
-		PosY = PosY + 0.001 * dt;
+		PosY = PosY - 0.001 * dt;
 	}
 	if (GetKeyState('9') & 0x8000)
 	{

@@ -32,7 +32,7 @@ vec4 pointLight()
 	vec3 lightVector = normalize(lightPos - position);
 
 	//Intensity = how aligned is the normal to the light direction, 1 = aligned 0 = not aligned
-	float intensity = dot(lightVector, normal);
+	float intensity = clamp(dot(lightVector, normal),0.0,1.0);
 
 	//Calculate diffuse
 	vec4 colour;
@@ -46,7 +46,7 @@ vec4 spotLight()
 {
 
 	vec3 lightVector = normalize(lightPos - position);
-	float spotFactor = clamp(dot(lightVector, lightDir),0.0,1.0);
+	float spotFactor = dot(lightVector, lightDir);
 
 	float cutOff = 0.9f;
 
@@ -55,13 +55,9 @@ vec4 spotLight()
 
 	if (spotFactor > cutOff)
 	{
-		//Intensity = how aligned is the normal to the light direction, 1 = aligned 0 = not aligned
-		float intensity1 = clamp(dot(lightVector, normal),0.0,1.0);
-		//float intensity2 = clamp(dot(normal, intensity1),0.0,1.0);
-
-		float intensity2 = intensity1 * (1.0f - ((1.0f - spotFactor) / (1.0 - cutOff)));
-
-		colour = clamp(diffuse * intensity2,0.0,1.0);
+	
+		colour = pointLight();
+        colour =  colour * (1.0 - (1.0 - spotFactor) * 1.0/(1.0 - cutOff));
 	}
 	else
 	{

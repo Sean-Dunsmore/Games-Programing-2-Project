@@ -17,8 +17,8 @@ void main()
 {
 	tC = TextCoords;
 	normal = mat3(transpose(inverse(modelMatrix))) * VertexNormal;
-	position = VertexPosition;
 	vec4 worldPosition = transform * vec4(VertexPosition, 1.0);
+	position = vec3(modelMatrix * vec4(VertexPosition, 1.0));
 	vec4 viewPosition = vec4(worldPosition.xyz - camPos, 1.0);
 	viewDirection = -vec3(viewPosition);
 	gl_Position = transform * vec4(VertexPosition, 1.0);
