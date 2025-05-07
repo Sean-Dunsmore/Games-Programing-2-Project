@@ -81,28 +81,28 @@
     <ClCompile Include="RimScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="AmbientLightScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
-    </ClCompile>
     <ClCompile Include="DefaultScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
-    </ClCompile>
-    <ClCompile Include="FadeScene.cpp">
       <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
     <ClCompile Include="NormalTextureScene.cpp">
       <Filter>Source Files\Scenes\WIP</Filter>
     </ClCompile>
+    <ClCompile Include="ToonScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="AmbientLightScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
     <ClCompile Include="PointLightScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="SpotLightScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="WaterScene.cpp">
-      <Filter>Source Files\Scenes\WIP</Filter>
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ToonScene.cpp">
+    <ClCompile Include="FadeScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,28 +143,28 @@
     <ClInclude Include="RimScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="AmbientLightScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
-    </ClInclude>
     <ClInclude Include="DefaultScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
-    </ClInclude>
-    <ClInclude Include="FadeScene.h">
       <Filter>Header Files\Scenes\WIP</Filter>
     </ClInclude>
     <ClInclude Include="NormalTextureScene.h">
       <Filter>Header Files\Scenes\WIP</Filter>
     </ClInclude>
+    <ClInclude Include="ToonScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="AmbientLightScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
     <ClInclude Include="PointLightScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="SpotLightScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="WaterScene.h">
-      <Filter>Header Files\Scenes\WIP</Filter>
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ToonScene.h">
+    <ClInclude Include="FadeScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -203,6 +203,18 @@
       <Filter>Resource Files\Shaders\Fragment</Filter>
     </None>
     <None Include="..\res\Light.vert">
+      <Filter>Resource Files\Shaders\Vertex</Filter>
+    </None>
+    <None Include="..\res\water.frag">
+      <Filter>Resource Files\Shaders\Fragment</Filter>
+    </None>
+    <None Include="..\res\water.vert">
+      <Filter>Resource Files\Shaders\Vertex</Filter>
+    </None>
+    <None Include="..\res\fade.frag">
+      <Filter>Resource Files\Shaders\Fragment</Filter>
+    </None>
+    <None Include="..\res\fade.vert">
       <Filter>Resource Files\Shaders\Vertex</Filter>
     </None>
   </ItemGroup>

@@ -6,6 +6,7 @@ FadeScene::FadeScene()
 
 	fade = new Shader;
 	texture1 = new Texture;
+	texture2 = new Texture;
 	mesh = new Mesh;
 	transform = new Transform;
 }
@@ -21,10 +22,11 @@ void FadeScene::initaliseScene(Camera& myCamera)
 {
 
 	//Load shader
-	fade->init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag");
+	fade->init("..\\res\\fade.vert", "..\\res\\fade.frag");
 
 	//Load texture
-	texture1->load("..\\res\\bricks.jpg");
+	texture1->load("..\\res\\brickwall.jpg");
+	texture2->load("..\\res\\rock.jpg");
 
 	//Load mesh
 	mesh->loadModel("..\\res\\monkey3.obj");
@@ -61,8 +63,8 @@ void FadeScene::draw(time_t dt, Camera myCamera)
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
-	transform->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
-	transform->SetRot(glm::vec3(0.0, 0.0, counter * 5));
+	transform->SetPos(glm::vec3(0, 0, 0));
+	transform->SetRot(glm::vec3(0.0, counter * 1, 0.0));
 	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 	//Bind bump shader
@@ -76,16 +78,16 @@ void FadeScene::draw(time_t dt, Camera myCamera)
 
 void FadeScene::linkFadeShader()
 {
-	fade->setFloat("maxDist", 20.0f);
-	fade->setFloat("minDist", 0.0f);
-	fade->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
-
-	fade->setInt("rimType", 0);
+	fade->setFloat("counter", counter);
 
 	//set textures
-	GLuint t1L = glGetUniformLocation(fade->getID(), "diffuse"); //texture 1 location
+	GLuint t1L = glGetUniformLocation(fade->getID(), "diffuse1"); //texture 1 location
 	texture1->Bind(0);
 	glUniform1i(t1L, 0);
+
+	GLuint t2L = glGetUniformLocation(fade->getID(), "diffuse2"); //texture 1 location
+	texture2->Bind(1);
+	glUniform1i(t2L, 1);
 
 }
 
@@ -96,6 +98,9 @@ void FadeScene::cleanup()
 	fade = nullptr;
 
 	delete texture1;
+	texture1 = nullptr;
+
+	delete texture2;
 	texture1 = nullptr;
 
 	delete mesh;

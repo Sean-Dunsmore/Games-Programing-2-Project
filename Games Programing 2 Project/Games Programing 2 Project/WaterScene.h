@@ -30,6 +30,6 @@ protected:
 	Mesh* mesh;
 	Transform* transform;
 
-	float counter = 1;
+	float counter = 0;
 
 };

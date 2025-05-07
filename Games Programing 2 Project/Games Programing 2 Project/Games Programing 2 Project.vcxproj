@@ -183,6 +183,8 @@
   <ItemGroup>
     <None Include="..\res\bump.frag" />
     <None Include="..\res\bump.vert" />
+    <None Include="..\res\fade.frag" />
+    <None Include="..\res\fade.vert" />
     <None Include="..\res\fogShader.frag" />
     <None Include="..\res\fogShader.vert" />
     <None Include="..\res\Light.frag" />
@@ -193,6 +195,8 @@
     <None Include="..\res\Rim.vert" />
     <None Include="..\res\shaderToon.frag" />
     <None Include="..\res\shaderToon.vert" />
+    <None Include="..\res\water.frag" />
+    <None Include="..\res\water.vert" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\res\background.wav" />

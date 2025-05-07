@@ -19,19 +19,21 @@ WaterScene::~WaterScene()
 //Initilize game
 void WaterScene::initaliseScene(Camera& myCamera)
 {
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//Load shader
-	water->init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag");
+	water->init("..\\res\\water.vert", "..\\res\\water.frag");
 
 	//Load texture
-	texture->load("..\\res\\bricks.jpg");
+	texture->load("..\\res\\water.jpg");
 
 	//Load mesh
-	mesh->loadModel("..\\res\\monkey3.obj");
+	mesh->loadModel("..\\res\\surface.obj");
 
 	//Set camera lookat
 	myCamera.setLook(*transform->GetPos());
-	myCamera.setPos(glm::vec3(2, 0, -4));
+	myCamera.setPos(glm::vec3(2, 5, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
 };
 
@@ -61,11 +63,11 @@ void WaterScene::draw(time_t dt, Camera myCamera)
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
-	transform->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
-	transform->SetRot(glm::vec3(0.0, 0.0, counter * 5));
-	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
+	transform->SetPos(glm::vec3(0, 1, 0.0));
+	transform->SetRot(glm::vec3(3, 0, 0));
+	transform->SetScale(glm::vec3(0.1, 0.1, 0.1));
 
-	//Bind bump shader
+	//Bind water shader
 	water->Bind();
 	linkWaterShader();
 	water->Update(*transform, myCamera);
@@ -76,11 +78,7 @@ void WaterScene::draw(time_t dt, Camera myCamera)
 
 void WaterScene::linkWaterShader()
 {
-	water->setFloat("maxDist", 20.0f);
-	water->setFloat("minDist", 0.0f);
-	water->setVec3("fogColor", glm::vec3(0.0f, 0.0f, 0.0f));
-
-	water->setInt("rimType", 0);
+	water->setFloat("counter", counter);
 
 	//set textures
 	GLuint t1L = glGetUniformLocation(water->getID(), "diffuse"); //texture 1 location
