@@ -25,6 +25,10 @@ protected:
 	void linkFogShader(Camera myCamera); //Link fog shader
 	void linkBumpMapping(); //Link bump mapping
 	void linkToonShader(); //Link toon shader
+	void linkFadeShader(); //Link Fade shader
+	void linkNormalTexShader(); //Link Normal tex shader
+	void linkWaterShader(); //Link Water shader
+	void linkLightShader(Camera myCamera, Transform* transform); //Link light shader
 
 	void cleanup();
 
@@ -33,8 +37,19 @@ protected:
 	Shader* bump;
 	Shader* toon;
 
+	Shader* fade;
+	Shader* normal;
+	Shader* water;
+	Shader* light;
+
 	//Textures
 	Texture* rock;
+
+	Texture* bricks;
+	Texture* brickwall;
+	Texture* waterTex;
+	Texture* white;
+
 	Texture* bumpMapping;
 
 	//Meshes
@@ -42,12 +57,27 @@ protected:
 	Mesh* bumpMesh;
 	Mesh* toonMesh;
 
+	Mesh* fadeMesh;
+	Mesh* normalMesh;
+	Mesh* waterMesh;
+	Mesh* ambientMesh;
+	Mesh* pointMesh;
+	Mesh* spotMesh;
+
 	//Transforms
 	Transform* fogTrans;
 	Transform* bumpTrans;
 	Transform* toonTrans;
 
+	Transform* fadeTrans;
+	Transform* normalTrans;
+	Transform* waterTrans;
+	Transform* ambientTrans;
+	Transform* pointTrans;
+	Transform* spotTrans;
+
 	float counter = 1;
+	int lightType = 0;
 
 };
 
