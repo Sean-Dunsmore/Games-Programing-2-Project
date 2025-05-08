@@ -31,28 +31,93 @@ void ToonScene::initaliseScene(Camera& myCamera)
 	myCamera.setLook(glm::vec3(0, 0, 0));
 };
 
-//Reset the game
-void ToonScene::resetScene()
-{
-
-}
-
 //Process inputs from user
 void ToonScene::processInput(time_t dt)
 {
-
+	//Control color
+	if (GetKeyState(VK_NUMPAD1) & 0x8000)
+	{
+		if (B > 0)
+		{
+			B = B - 0.001 * dt;
+		}
+		else
+		{
+			B = 0;
+		}
+	}
+	if (GetKeyState(VK_NUMPAD2) & 0x8000)
+	{
+		B = 0.5;
+	}
+	if (GetKeyState(VK_NUMPAD3) & 0x8000)
+	{
+		if (B < 1)
+		{
+			B = B + 0.001 * dt;
+		}
+		else
+		{
+			B = 1;
+		}
+	}
+	if (GetKeyState(VK_NUMPAD4) & 0x8000)
+	{
+		if (G > 0)
+		{
+			G = G - 0.001 * dt;
+		}
+		else
+		{
+			G = 0;
+		}
+	}
+	if (GetKeyState(VK_NUMPAD5) & 0x8000)
+	{
+		G = 0.5;
+	}
+	if (GetKeyState(VK_NUMPAD6) & 0x8000)
+	{
+		if (G < 1)
+		{
+			G = G + 0.001 * dt;
+		}
+		else
+		{
+			G = 1;
+		}
+	}
+	if (GetKeyState(VK_NUMPAD7) & 0x8000)
+	{
+		if (R > 0)
+		{
+			R = R - 0.001 * dt;
+		}
+		else
+		{
+			R = 0;
+		}
+	}
+	if (GetKeyState(VK_NUMPAD8) & 0x8000)
+	{
+		R = 1;
+	}
+	if (GetKeyState(VK_NUMPAD9) & 0x8000)
+	{
+		if (R < 1)
+		{
+			R = R + 0.001 * dt;
+		}
+		else
+		{
+			R = 1;
+		}
+	}
 };
 
 //Main update function
 void ToonScene::updateScene(time_t dt)
 {
-
-};
-
-//Set visuals from game data
-void ToonScene::draw(time_t dt, Camera myCamera)
-{
-
 	//Update counter
 	counter = counter + (0.0003f * dt);
 
@@ -60,6 +125,12 @@ void ToonScene::draw(time_t dt, Camera myCamera)
 	transform->SetPos(glm::vec3(0, 0, 0));
 	transform->SetRot(glm::vec3(0.0, counter * 1, 0.0));
 	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
+
+};
+
+//Set visuals from game data
+void ToonScene::draw(time_t dt, Camera myCamera)
+{
 
 	//Bind bump shader
 	toon->Bind();
@@ -74,6 +145,7 @@ void ToonScene::linkToonShader()
 {
 	toon->setMat4("modelMatrix", transform->GetModel());
 	toon->setVec3("lightDir", glm::vec3(0.5f, 0.5f, -0.5f));
+	toon->setVec3("inColor", glm::vec3(R, G, B));
 
 }
 

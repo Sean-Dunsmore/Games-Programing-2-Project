@@ -2,6 +2,11 @@
 #include "Scene.h"
 #include <windows.h>
 
+//Scene containing a simple toon shader
+//Additional controls
+//1,2,3 - Change blue color
+//4,5,6 - Change green color
+//7,8,9 - Change red color
 class ToonScene : public Scene
 {
 public:
@@ -10,8 +15,6 @@ public:
 	~ToonScene(); //Deconstructor
 
 	void initaliseScene(Camera& myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -23,13 +26,17 @@ protected:
 
 	void linkToonShader(); //Link toon shader
 
-	void cleanup();
+	void cleanup(); // Cleanup
 
 	Shader* toon;
 	Mesh* mesh;
 	Transform* transform;
 
 	float counter = 1;
+
+	float R = 1.0;
+	float G = 0.5;
+	float B = 0.5;
 
 };
 

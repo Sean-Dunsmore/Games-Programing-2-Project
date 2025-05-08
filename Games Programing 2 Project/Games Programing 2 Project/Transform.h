@@ -3,6 +3,7 @@
 #include <glm/gtx/transform.hpp>
 #include "camera.h"
 
+//Transform class
 struct Transform
 {
 public:

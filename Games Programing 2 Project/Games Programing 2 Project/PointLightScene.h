@@ -2,6 +2,11 @@
 #include "Scene.h"
 #include <windows.h>
 
+//Scene that uses the light shader to create a point light
+//Additional controls on numpad
+//1,2,3 - Move light on Z
+//4,5,6 - Move light on Y
+//7,8,9 - Move light on X
 class PointLightScene : public Scene
 {
 public:
@@ -23,26 +28,23 @@ protected:
 
 	void linkLightShader(Camera myCamera); //Link light shader
 
-	void cleanup();
+	void cleanup(); //Cleanup
 
 	Shader* light;
 	Texture* texture;
 	Mesh* mesh;
 	Transform* transform;
 
+	//Mesh to represent location of light
 	Mesh* lightMesh;
 	Transform* lightTransform;
 
 	float counter = 1;
 	int lightType = 1;
 
-	float RotX = 3;
-	float RotY = -1;
-	float RotZ = 0;
-
-	float PosX = 0;
-	float PosY = 10;
-	float PosZ = 0;
+	float posX = 0;
+	float posY = 1.3;
+	float posZ = 0;
 
 };
 

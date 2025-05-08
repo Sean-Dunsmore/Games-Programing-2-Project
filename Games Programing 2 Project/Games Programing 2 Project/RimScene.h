@@ -2,6 +2,9 @@
 #include "Scene.h"
 #include <windows.h>
 
+//Scene containing a simple rimlight shader
+//Addtional controls on numpad
+//1,2,3 - Swap rim lighting method and color
 class RimScene : public Scene
 {
 public:
@@ -10,8 +13,6 @@ public:
 	~RimScene(); //Deconstructor
 
 	void initaliseScene(Camera& myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -23,7 +24,7 @@ protected:
 
 	void linkFogShader(Camera myCamera); //Link fog shader
 
-	void cleanup();
+	void cleanup(); //Clean up
 
 	Shader* fog;
 	Texture* texture;

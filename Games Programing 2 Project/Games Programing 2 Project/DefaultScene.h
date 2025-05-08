@@ -1,7 +1,10 @@
 #pragma once
 #include "Scene.h"
-#include <windows.h>
 
+//Default scene upon loading the program
+//Shows off all shaders together
+//No additional controls
+//Since im loading and unloading shaders based on scene this scene can take a bit to load.
 class DefaultScene : public Scene
 {
 public:
@@ -10,8 +13,6 @@ public:
 	~DefaultScene(); //Deconstructor
 
 	void initaliseScene(Camera& myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -36,7 +37,6 @@ protected:
 	Shader* fog;
 	Shader* bump;
 	Shader* toon;
-
 	Shader* fade;
 	Shader* normal;
 	Shader* water;
@@ -44,19 +44,16 @@ protected:
 
 	//Textures
 	Texture* rock;
-
 	Texture* bricks;
 	Texture* brickwall;
 	Texture* waterTex;
 	Texture* white;
-
 	Texture* bumpMapping;
 
 	//Meshes
 	Mesh* fogMesh;
 	Mesh* bumpMesh;
 	Mesh* toonMesh;
-
 	Mesh* fadeMesh;
 	Mesh* normalMesh;
 	Mesh* waterMesh;
@@ -68,7 +65,6 @@ protected:
 	Transform* fogTrans;
 	Transform* bumpTrans;
 	Transform* toonTrans;
-
 	Transform* fadeTrans;
 	Transform* normalTrans;
 	Transform* waterTrans;

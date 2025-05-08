@@ -2,6 +2,10 @@
 #include "Scene.h"
 #include <windows.h>
 
+//Water scene containing a simple water shader that applies a scroling texture, transparancy, and vertex manipulation
+//Additonal controls
+//4,6 - Change wave Width
+//2,8 - Change wave Height
 class WaterScene : public Scene
 {
 public:
@@ -10,8 +14,6 @@ public:
 	~WaterScene(); //Deconstructor
 
 	void initaliseScene(Camera& myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -23,7 +25,7 @@ protected:
 
 	void linkWaterShader(); //Link water shader
 
-	void cleanup();
+	void cleanup(); //Clean up
 
 	Shader* water;
 	Texture* texture;
@@ -31,5 +33,6 @@ protected:
 	Transform* transform;
 
 	float counter = 0;
-
+	float waveHeight = 20;
+	float waveWidth = 0.5;
 };

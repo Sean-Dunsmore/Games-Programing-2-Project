@@ -35,35 +35,65 @@ void NormalTextureScene::initaliseScene(Camera& myCamera)
 	myCamera.setLook(glm::vec3(0, 0, 0));
 };
 
-//Reset the game
-void NormalTextureScene::resetScene()
-{
-
-}
-
 //Process inputs from user
 void NormalTextureScene::processInput(time_t dt)
 {
 
+	//Control position of transform
+	if (GetKeyState(VK_NUMPAD1) & 0x8000)
+	{
+		posZ = posZ - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD2) & 0x8000)
+	{
+		posZ = 0;
+	}
+	if (GetKeyState(VK_NUMPAD3) & 0x8000)
+	{
+		posZ = posZ + 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD4) & 0x8000)
+	{
+		posY = posY - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD5) & 0x8000)
+	{
+		posY = 0;
+	}
+	if (GetKeyState(VK_NUMPAD6) & 0x8000)
+	{
+		posY = posY + 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD7) & 0x8000)
+	{
+		posX = posX - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD8) & 0x8000)
+	{
+		posX = 0;
+	}
+	if (GetKeyState(VK_NUMPAD9) & 0x8000)
+	{
+		posX = posX + 0.001 * dt;
+	}
 };
 
 //Main update function
 void NormalTextureScene::updateScene(time_t dt)
 {
+	//Update counter
+	counter = counter + (0.0003f * dt);
+
+	//Update transform position
+	transform->SetPos(glm::vec3(posX, posY, posZ));
+	transform->SetRot(glm::vec3(0.0, counter * 1, 0.0));
+	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 };
 
 //Set visuals from game data
 void NormalTextureScene::draw(time_t dt, Camera myCamera)
 {
-
-	//Update counter
-	counter = counter + (0.0003f * dt);
-
-	//Update transform position
-	transform->SetPos(glm::vec3(0, 0, 0));
-	transform->SetRot(glm::vec3(0.0, counter * 1, 0.0));
-	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 	//Bind bump shader
 	normalTex->Bind();
@@ -74,6 +104,7 @@ void NormalTextureScene::draw(time_t dt, Camera myCamera)
 
 };
 
+//Link normal shader
 void NormalTextureScene::linkNormalTexShader()
 {
 

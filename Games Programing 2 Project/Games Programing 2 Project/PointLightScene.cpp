@@ -34,9 +34,9 @@ void PointLightScene::initaliseScene(Camera& myCamera)
 	lightMesh->loadModel("..\\res\\ball.obj");
 
 	//Set camera lookat
-	myCamera.setPos(glm::vec3(2, 50, -100));
+	myCamera.setPos(glm::vec3(1, 4, 6));
 	myCamera.setUp(glm::vec3(0, 1, 0));
-	myCamera.setLook(glm::vec3(0, 20, 0.0));
+	myCamera.setLook(glm::vec3(0, 1.5, 1));
 };
 
 //Reset the game
@@ -48,43 +48,48 @@ void PointLightScene::resetScene()
 //Process inputs from user
 void PointLightScene::processInput(time_t dt)
 {
-	if (GetKeyState('1') & 0x8000)
+	//Control position of light
+	if (GetKeyState(VK_NUMPAD1) & 0x8000)
 	{
-		RotX = RotX + 0.001 * dt;
+		posZ = posZ - 0.001 * dt;
 	}
-	if (GetKeyState('2') & 0x8000)
+	if (GetKeyState(VK_NUMPAD2) & 0x8000)
 	{
-		RotY = RotY + 0.001 * dt;
+		posZ = 0;
 	}
-	if (GetKeyState('3') & 0x8000)
+	if (GetKeyState(VK_NUMPAD3) & 0x8000)
 	{
-		RotZ = RotZ + 0.001 * dt;
+		posZ = posZ + 0.001 * dt;
 	}
-
-	if (GetKeyState('7') & 0x8000)
+	if (GetKeyState(VK_NUMPAD4) & 0x8000)
 	{
-		PosX = PosX + 0.001 * dt;
+		posY = posY - 0.001 * dt;
 	}
-	if (GetKeyState('8') & 0x8000)
+	if (GetKeyState(VK_NUMPAD5) & 0x8000)
 	{
-		PosY = PosY - 0.001 * dt;
+		posY = 1.3;
 	}
-	if (GetKeyState('9') & 0x8000)
+	if (GetKeyState(VK_NUMPAD6) & 0x8000)
 	{
-		PosZ = PosZ + 0.001 * dt;
+		posY = posY + 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD7) & 0x8000)
+	{
+		posX = posX - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD8) & 0x8000)
+	{
+		posX = 0;
+	}
+	if (GetKeyState(VK_NUMPAD9) & 0x8000)
+	{
+		posX = posX + 0.001 * dt;
 	}
 };
 
 //Main update function
 void PointLightScene::updateScene(time_t dt)
 {
-
-};
-
-//Set visuals from game data
-void PointLightScene::draw(time_t dt, Camera myCamera)
-{
-
 	//Update counter
 	counter = counter + (0.0003f * dt);
 
@@ -94,9 +99,15 @@ void PointLightScene::draw(time_t dt, Camera myCamera)
 	transform->SetScale(glm::vec3(0.1, 0.1, 0.1));
 
 	//Update light position
-	lightTransform->SetPos(glm::vec3(PosX, PosY, PosZ));
-	lightTransform->SetRot(glm::vec3(RotX, RotY, RotZ));
+	lightTransform->SetPos(glm::vec3(posX, posY, posZ));
+	lightTransform->SetRot(glm::vec3(3, -1, 0));
 	lightTransform->SetScale(glm::vec3(0.1, 0.1, 0.1));
+
+};
+
+//Set visuals from game data
+void PointLightScene::draw(time_t dt, Camera myCamera)
+{
 
 	//Bind bump shader
 	light->Bind();
@@ -110,6 +121,7 @@ void PointLightScene::draw(time_t dt, Camera myCamera)
 
 };
 
+//Link light shader
 void PointLightScene::linkLightShader(Camera myCamera)
 {
 	//Vert 
@@ -117,12 +129,12 @@ void PointLightScene::linkLightShader(Camera myCamera)
 	light->setVec3("camPos", myCamera.getPos());
 
 	//Frag
-	light->setVec3("lightDir", glm::vec3(RotX, RotY, RotZ));
-	light->setVec3("lightPos", glm::vec3(PosX, PosY, PosZ));
+	light->setVec3("lightDir", glm::vec3(3, -1, 0));
+	light->setVec3("lightPos", glm::vec3(posX, posY, posZ));
 
-	light->setVec4("ambient", glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-	light->setVec4("diffuse", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-	light->setVec4("specular", glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	light->setVec4("ambient", glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
+	light->setVec4("diffuse", glm::vec4(0.8f, 0.8f, 0.8f, 1.0f));
+	light->setVec4("specular", glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
 	light->setInt("lightType", lightType);
 
 	//set textures

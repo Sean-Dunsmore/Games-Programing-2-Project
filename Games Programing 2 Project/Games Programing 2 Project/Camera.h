@@ -54,16 +54,15 @@ public:
 		up = Up;
 	}
 
+	//Movement
 	void MoveForward(float amt)
 	{
 		pos += forward * amt;
 	}
-
 	void MoveRight(float amt)
 	{
 		pos += glm::cross(up, forward) * amt;
 	}
-
 	void Pitch(float angle)
 	{
 		glm::vec3 right = glm::normalize(glm::cross(up, forward));
@@ -71,7 +70,6 @@ public:
 		forward = glm::vec3(glm::normalize(glm::rotate(angle, right) * glm::vec4(forward, 0.0)));
 		up = glm::normalize(glm::cross(forward, right));
 	}
-
 	void RotateY(float angle)
 	{
 		static const glm::vec3 UP(0.0f, 1.0f, 0.0f);
@@ -82,7 +80,6 @@ public:
 		up = glm::vec3(glm::normalize(rotation * glm::vec4(up, 0.0)));
 	}
 
-protected:
 private:
 	glm::mat4 projection;
 	glm::vec3 pos;

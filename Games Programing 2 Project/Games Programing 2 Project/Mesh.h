@@ -4,6 +4,7 @@
 #include <string>
 #include "obj_loader.h"
 
+//Vertex Struct
 struct Vertex
 {
 public:
@@ -23,6 +24,7 @@ public:
 	glm::vec3 normal;
 };
 
+//Sphere Struct
 struct Sphere
 {
 public:
@@ -52,6 +54,8 @@ private:
 	float radius;
 };
 
+//Mesh class
+//Loads in and stores values of models
 class Mesh
 {
 public:

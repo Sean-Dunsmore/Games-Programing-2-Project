@@ -15,6 +15,7 @@
 #include "WaterScene.h"
 #include <windows.h>
 
+//Enum containing possible scenes
 enum CurrentScene
 {
 	Default,
@@ -76,22 +77,8 @@ private:
 	//Game display
 	Display gameDisplay;
 
-	//Meshes TODO: Rework into list/vector or something
-	//Mesh mesh1;
-	//Mesh mesh2;
-
 	//Camera
 	Camera myCamera;
-
-	//Shaders TODO: Rework into list/vector or something
-	//Shader toonShader;
-	//Shader rimShader;
-	//Shader bump;
-	//Shader noBump;
-	//Shader what;
-
-	//Textures TODO: Rework into list/vector or something
-	//Texture texture1;
 
 	//Quick fix to prevent multiple inputs in a frame
 	float inputTimer = 0;

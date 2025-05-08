@@ -1,6 +1,9 @@
 #pragma once
 #include "Scene.h"
 
+//Scene demonstrating a simple bump map on a plane
+//Additional controls on numpad
+//1,2 - Enable disable bump map
 class BumpScene: public Scene
 {
 public:
@@ -9,8 +12,6 @@ public:
 	~BumpScene(); //Deconstructor
 
 	void initaliseScene(Camera &myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -21,10 +22,12 @@ public:
 protected:
 
 	void linkBumpMapping(); //Link bump mapping
+	void linkNoBump(); //Link No Bump
 
-	void cleanup();
+	void cleanup(); //Clean up
 
 	Shader* bump;
+	Shader* noBump;
 	Texture* texture;
 	Texture* bumpMapping;
 	Mesh* mesh;
@@ -32,5 +35,6 @@ protected:
 
 	float counter = 1;
 
+	bool hasBump = true;
 };
 

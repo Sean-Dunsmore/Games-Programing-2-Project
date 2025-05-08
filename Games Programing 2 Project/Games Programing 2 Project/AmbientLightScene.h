@@ -1,7 +1,13 @@
 #pragma once
 #include "Scene.h"
-#include <windows.h>
 
+//Ambient Light Scene
+//Scene that contains a single directional light to demonstrate ADS
+//Ambient light is red
+//Diffuse light is green
+//Specular light is blue
+//Additional controls on numpad
+//1,2,3 - Rotate Light
 class AmbientLightScene : public Scene
 {
 public:
@@ -10,8 +16,6 @@ public:
 	~AmbientLightScene(); //Deconstructor
 
 	void initaliseScene(Camera& myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -23,15 +27,12 @@ protected:
 
 	void linkLightShader(Camera myCamera); //Link light shader
 
-	void cleanup();
+	void cleanup(); //Cleanup
 
 	Shader* light;
 	Texture* texture;
 	Mesh* mesh;
 	Transform* transform;
-
-	Mesh* lightMesh;
-	Transform* lightTransform;
 
 	float counter = 1;
 	int lightType = 0;
@@ -39,10 +40,6 @@ protected:
 	float RotX = 3;
 	float RotY = -1;
 	float RotZ = 0;
-
-	float PosX = 0;
-	float PosY = 10;
-	float PosZ = 0;
 
 };
 

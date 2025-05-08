@@ -1,7 +1,11 @@
 #pragma once
 #include "Scene.h"
-#include <windows.h>
 
+//Scene containing a shader that fades between 2 textures
+//Additional controls on numpad
+//1,2,3 - Scale Z
+//4,5,6 - Scale Y
+//7,8,9 - Scale X
 class FadeScene : public Scene
 {
 public:
@@ -10,8 +14,6 @@ public:
 	~FadeScene(); //Deconstructor
 
 	void initaliseScene(Camera& myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -23,7 +25,7 @@ protected:
 
 	void linkFadeShader(); //Link fade shader
 
-	void cleanup();
+	void cleanup(); //Cleanup
 
 	Shader* fade;
 	Texture* texture1;
@@ -32,5 +34,9 @@ protected:
 	Transform* transform;
 
 	float counter = 1;
+
+	float scaleX = 0.6;
+	float scaleY = 0.6;
+	float scaleZ = 0.6;
 
 };

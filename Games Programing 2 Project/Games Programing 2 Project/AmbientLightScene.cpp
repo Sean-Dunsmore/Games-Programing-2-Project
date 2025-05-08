@@ -9,9 +9,6 @@ AmbientLightScene::AmbientLightScene()
 	mesh = new Mesh;
 	transform = new Transform;
 
-	lightMesh = new Mesh;
-	lightTransform = new Transform;
-
 }
 
 //Deconstructor
@@ -28,57 +25,47 @@ void AmbientLightScene::initaliseScene(Camera& myCamera)
 	light->init("..\\res\\Light.vert", "..\\res\\Light.frag");
 
 	//Load texture
-	texture->load("..\\res\\white.jpg");
+	texture->load("..\\res\\brickwall.jpg");
 
 	//Load mesh
-	mesh->loadModel("..\\res\\surface.obj");
-	lightMesh->loadModel("..\\res\\ball.obj");
+	mesh->loadModel("..\\res\\ball.obj");
 
 	//Set camera lookat
-	myCamera.setPos(glm::vec3(2, 50, -100));
+	myCamera.setPos(glm::vec3(2, 0, -4));
 	myCamera.setUp(glm::vec3(0, 1, 0));
-	myCamera.setLook(glm::vec3(0, 20, 0.0));
+	myCamera.setLook(glm::vec3(0, 0, 0));
+
 };
-
-//Reset the game
-void AmbientLightScene::resetScene()
-{
-
-}
 
 //Process inputs from user
 void AmbientLightScene::processInput(time_t dt)
 {
-	if (GetKeyState('1') & 0x8000)
+	if (GetKeyState(VK_NUMPAD1) & 0x8000)
 	{
 		RotX = RotX + 0.001 * dt;
 	}
-	if (GetKeyState('2') & 0x8000)
+	if (GetKeyState(VK_NUMPAD2) & 0x8000)
 	{
 		RotY = RotY + 0.001 * dt;
 	}
-	if (GetKeyState('3') & 0x8000)
+	if (GetKeyState(VK_NUMPAD3) & 0x8000)
 	{
 		RotZ = RotZ + 0.001 * dt;
 	}
 
-	if (GetKeyState('7') & 0x8000)
-	{
-		PosX = PosX + 0.001 * dt;
-	}
-	if (GetKeyState('8') & 0x8000)
-	{
-		PosY = PosY + 0.001 * dt;
-	}
-	if (GetKeyState('9') & 0x8000)
-	{
-		PosZ = PosZ + 0.001 * dt;
-	}
 };
 
 //Main update function
 void AmbientLightScene::updateScene(time_t dt)
 {
+
+	//Update counter
+	counter = counter + (0.0003f * dt);
+
+	//Update transform position
+	transform->SetPos(glm::vec3(0, 0, 0));
+	transform->SetRot(glm::vec3(0.0, counter * 1, 0.0));
+	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
 
 };
 
@@ -86,28 +73,13 @@ void AmbientLightScene::updateScene(time_t dt)
 void AmbientLightScene::draw(time_t dt, Camera myCamera)
 {
 
-	//Update counter
-	counter = counter + (0.0003f * dt);
-
-	//Update transform position
-	transform->SetPos(glm::vec3(0, 1, 0.0));
-	transform->SetRot(glm::vec3(3, 0, 0));
-	transform->SetScale(glm::vec3(0.1, 0.1, 0.1));
-
-	//Update light position
-	lightTransform->SetPos(glm::vec3(PosX, PosY, PosZ));
-	lightTransform->SetRot(glm::vec3(RotX, RotY, RotZ));
-	lightTransform->SetScale(glm::vec3(0.1, 0.1, 0.1));
-
-	//Bind bump shader
+	//Bind Light shader
 	light->Bind();
 	linkLightShader(myCamera);
 	light->Update(*transform, myCamera);
 
 	mesh->draw();
 
-	light->Update(*lightTransform, myCamera);
-	lightMesh->draw();
 };
 
 void AmbientLightScene::linkLightShader(Camera myCamera)
@@ -119,7 +91,7 @@ void AmbientLightScene::linkLightShader(Camera myCamera)
 
 	//Frag
 	light->setVec3("lightDir", glm::vec3(RotX, RotY, RotZ));
-	light->setVec3("lightPos", glm::vec3(PosX, PosY, PosZ));
+	light->setVec3("lightPos", glm::vec3(0, 0, 0));
 
 	light->setVec4("ambient", glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	light->setVec4("diffuse", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
@@ -147,11 +119,5 @@ void AmbientLightScene::cleanup()
 
 	delete transform;
 	transform = nullptr;
-
-	delete lightMesh;
-	lightMesh = nullptr;
-
-	delete lightTransform;
-	lightTransform = nullptr;
 
 }

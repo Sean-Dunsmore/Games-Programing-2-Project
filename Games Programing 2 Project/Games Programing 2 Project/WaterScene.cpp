@@ -37,26 +37,63 @@ void WaterScene::initaliseScene(Camera& myCamera)
 	myCamera.setLook(glm::vec3(0, 20, 0.0));
 };
 
-//Reset the game
-void WaterScene::resetScene()
-{
-
-}
-
 //Process inputs from user
 void WaterScene::processInput(time_t dt)
 {
+	//Control wave width
+	if (GetKeyState(VK_NUMPAD4) & 0x8000)
+	{
+		//rotY = rotY - 0.001 * dt;
+
+		if (waveWidth > 0.1)
+		{
+			waveWidth = waveWidth - 0.0001 * dt;
+		}
+		else
+		{
+			waveWidth = 0.1;
+		}
+	}
+	if (GetKeyState(VK_NUMPAD6) & 0x8000)
+	{
+		if (waveWidth < 1)
+		{
+			waveWidth = waveWidth + 0.0001 * dt;
+		}
+		else
+		{
+			waveWidth = 1;
+		}
+	}
+
+	//Control wave height
+	if (GetKeyState(VK_NUMPAD2) & 0x8000)
+	{
+		if (waveHeight > 0)
+		{
+			waveHeight = waveHeight - 0.1 * dt;
+		}
+		else
+		{
+			waveHeight = 0;
+		}
+	}
+	if (GetKeyState(VK_NUMPAD8) & 0x8000)
+	{
+		if (waveHeight < 100)
+		{
+			waveHeight = waveHeight + 0.1 * dt;
+		}
+		else
+		{
+			waveHeight = 100;
+		}
+	}
 
 };
 
 //Main update function
 void WaterScene::updateScene(time_t dt)
-{
-
-};
-
-//Set visuals from game data
-void WaterScene::draw(time_t dt, Camera myCamera)
 {
 
 	//Update counter
@@ -66,6 +103,12 @@ void WaterScene::draw(time_t dt, Camera myCamera)
 	transform->SetPos(glm::vec3(0, 1, 0.0));
 	transform->SetRot(glm::vec3(3, 0, 0));
 	transform->SetScale(glm::vec3(0.1, 0.1, 0.1));
+
+};
+
+//Set visuals from game data
+void WaterScene::draw(time_t dt, Camera myCamera)
+{
 
 	//Bind water shader
 	water->Bind();
@@ -79,6 +122,8 @@ void WaterScene::draw(time_t dt, Camera myCamera)
 void WaterScene::linkWaterShader()
 {
 	water->setFloat("counter", counter);
+	water->setFloat("height", waveHeight);
+	water->setFloat("width", waveWidth);
 
 	//set textures
 	GLuint t1L = glGetUniformLocation(water->getID(), "diffuse"); //texture 1 location

@@ -35,26 +35,20 @@ void RimScene::initaliseScene(Camera& myCamera)
 	myCamera.setLook(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
 };
 
-//Reset the game
-void RimScene::resetScene()
-{
-
-}
-
 //Process inputs from user
 void RimScene::processInput(time_t dt)
 {
 
 	//Swap rim
-	if (GetKeyState(0x31) & 0x8000)
+	if (GetKeyState(VK_NUMPAD1) & 0x8000)
 	{
 		rimType = 1;
 	}
-	if (GetKeyState(0x32) & 0x8000)
+	if (GetKeyState(VK_NUMPAD2) & 0x8000)
 	{
 		rimType = 2;
 	}
-	if (GetKeyState(0x33) & 0x8000)
+	if (GetKeyState(VK_NUMPAD3) & 0x8000)
 	{
 		rimType = 3;
 	}
@@ -64,13 +58,6 @@ void RimScene::processInput(time_t dt)
 //Main update function
 void RimScene::updateScene(time_t dt)
 {
-
-};
-
-//Set visuals from game data
-void RimScene::draw(time_t dt, Camera myCamera)
-{
-
 	//Update counter
 	counter = counter + (0.0003f * dt);
 
@@ -78,6 +65,11 @@ void RimScene::draw(time_t dt, Camera myCamera)
 	transform->SetPos(glm::vec3(-sinf(counter), -0.5, 10.0 + (-sinf(counter) * 8)));
 	transform->SetRot(glm::vec3(0.0, 0.0, counter * 5));
 	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
+};
+
+//Set visuals from game data
+void RimScene::draw(time_t dt, Camera myCamera)
+{
 
 	//Bind bump shader
 	fog->Bind();
@@ -88,6 +80,7 @@ void RimScene::draw(time_t dt, Camera myCamera)
 
 };
 
+//Link fog shader
 void RimScene::linkFogShader(Camera myCamera)
 {
 	fog->setFloat("maxDist", 20.0f);

@@ -39,52 +39,52 @@ void SpotLightScene::initaliseScene(Camera& myCamera)
 	myCamera.setLook(glm::vec3(0, 20, 0.0));
 };
 
-//Reset the game
-void SpotLightScene::resetScene()
-{
-
-}
-
 //Process inputs from user
 void SpotLightScene::processInput(time_t dt)
 {
-	if (GetKeyState('1') & 0x8000)
+	//Control roation of light
+	if (GetKeyState(VK_NUMPAD1) & 0x8000)
 	{
-		RotX = RotX + 0.001 * dt;
+		rotZ = rotZ - 0.001 * dt;
 	}
-	if (GetKeyState('2') & 0x8000)
+	if (GetKeyState(VK_NUMPAD2) & 0x8000)
 	{
-		RotY = RotY + 0.001 * dt;
+		rotZ = 0.5;
 	}
-	if (GetKeyState('3') & 0x8000)
+	if (GetKeyState(VK_NUMPAD3) & 0x8000)
 	{
-		RotZ = RotZ + 0.001 * dt;
+		rotZ = rotZ + 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD4) & 0x8000)
+	{
+		rotY = rotY - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD5) & 0x8000)
+	{
+		rotY = 2;
+	}
+	if (GetKeyState(VK_NUMPAD6) & 0x8000)
+	{
+		rotY = rotY + 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD7) & 0x8000)
+	{
+		rotX = rotX - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD8) & 0x8000)
+	{
+		rotX = 0.5;
+	}
+	if (GetKeyState(VK_NUMPAD9) & 0x8000)
+	{
+		rotX = rotX + 0.001 * dt;
 	}
 
-	if (GetKeyState('7') & 0x8000)
-	{
-		PosX = PosX + 0.001 * dt;
-	}
-	if (GetKeyState('8') & 0x8000)
-	{
-		PosY = PosY + 0.001 * dt;
-	}
-	if (GetKeyState('9') & 0x8000)
-	{
-		PosZ = PosZ + 0.001 * dt;
-	}
 };
 
 //Main update function
 void SpotLightScene::updateScene(time_t dt)
 {
-
-};
-
-//Set visuals from game data
-void SpotLightScene::draw(time_t dt, Camera myCamera)
-{
-
 	//Update counter
 	counter = counter + (0.0003f * dt);
 
@@ -94,9 +94,14 @@ void SpotLightScene::draw(time_t dt, Camera myCamera)
 	transform->SetScale(glm::vec3(0.1, 0.1, 0.1));
 
 	//Update light position
-	lightTransform->SetPos(glm::vec3(PosX, PosY, PosZ));
-	lightTransform->SetRot(glm::vec3(RotX, RotY, RotZ));
+	lightTransform->SetPos(glm::vec3(0, 1.3, 0));
+	lightTransform->SetRot(glm::vec3(rotX, rotY, rotZ));
 	lightTransform->SetScale(glm::vec3(0.1, 0.1, 0.1));
+};
+
+//Set visuals from game data
+void SpotLightScene::draw(time_t dt, Camera myCamera)
+{
 
 	//Bind bump shader
 	light->Bind();
@@ -110,6 +115,7 @@ void SpotLightScene::draw(time_t dt, Camera myCamera)
 
 };
 
+//Link light shader
 void SpotLightScene::linkLightShader(Camera myCamera)
 {
 	//Vert 
@@ -117,12 +123,12 @@ void SpotLightScene::linkLightShader(Camera myCamera)
 	light->setVec3("camPos", myCamera.getPos());
 
 	//Frag
-	light->setVec3("lightDir", glm::vec3(RotX, RotY, RotZ));
-	light->setVec3("lightPos", glm::vec3(PosX, PosY, PosZ));
+	light->setVec3("lightDir", glm::vec3(rotX, rotY, rotZ));
+	light->setVec3("lightPos", glm::vec3(0, 1.3, 0));
 
-	light->setVec4("ambient", glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-	light->setVec4("diffuse", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-	light->setVec4("specular", glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	light->setVec4("ambient", glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
+	light->setVec4("diffuse", glm::vec4(0.8f, 0.8f, 0.8f, 1.0f));
+	light->setVec4("specular", glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
 	light->setInt("lightType", lightType);
 
 	//set textures

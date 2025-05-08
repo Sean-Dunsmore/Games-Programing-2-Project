@@ -37,37 +37,67 @@ void FadeScene::initaliseScene(Camera& myCamera)
 	myCamera.setLook(glm::vec3(0, 0, 0));
 };
 
-//Reset the game
-void FadeScene::resetScene()
-{
-
-}
-
 //Process inputs from user
 void FadeScene::processInput(time_t dt)
 {
+
+	//Control scale of transform
+	if (GetKeyState(VK_NUMPAD1) & 0x8000)
+	{
+		scaleZ = scaleZ - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD2) & 0x8000)
+	{
+		scaleZ = 0.6;
+	}
+	if (GetKeyState(VK_NUMPAD3) & 0x8000)
+	{
+		scaleZ = scaleZ + 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD4) & 0x8000)
+	{
+		scaleY = scaleY - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD5) & 0x8000)
+	{
+		scaleY = 0.6;
+	}
+	if (GetKeyState(VK_NUMPAD6) & 0x8000)
+	{
+		scaleY = scaleY + 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD7) & 0x8000)
+	{
+		scaleX = scaleX - 0.001 * dt;
+	}
+	if (GetKeyState(VK_NUMPAD8) & 0x8000)
+	{
+		scaleX = 0.6;
+	}
+	if (GetKeyState(VK_NUMPAD9) & 0x8000)
+	{
+		scaleX = scaleX + 0.001 * dt;
+	}
 
 };
 
 //Main update function
 void FadeScene::updateScene(time_t dt)
 {
-
-};
-
-//Set visuals from game data
-void FadeScene::draw(time_t dt, Camera myCamera)
-{
-
 	//Update counter
 	counter = counter + (0.0003f * dt);
 
 	//Update transform position
 	transform->SetPos(glm::vec3(0, 0, 0));
 	transform->SetRot(glm::vec3(0.0, counter * 1, 0.0));
-	transform->SetScale(glm::vec3(0.6, 0.6, 0.6));
+	transform->SetScale(glm::vec3(scaleX, scaleY, scaleZ));
+};
 
-	//Bind bump shader
+//Set visuals from game data
+void FadeScene::draw(time_t dt, Camera myCamera)
+{
+
+	//Bind fade shader
 	fade->Bind();
 	linkFadeShader();
 	fade->Update(*transform, myCamera);
@@ -76,6 +106,7 @@ void FadeScene::draw(time_t dt, Camera myCamera)
 
 };
 
+//Link fade shader
 void FadeScene::linkFadeShader()
 {
 	fade->setFloat("counter", counter);

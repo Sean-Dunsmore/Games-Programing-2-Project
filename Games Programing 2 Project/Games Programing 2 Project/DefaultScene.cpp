@@ -90,12 +90,6 @@ void DefaultScene::initaliseScene(Camera& myCamera)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 };
 
-//Reset the game
-void DefaultScene::resetScene()
-{
-
-}
-
 //Process inputs from user
 void DefaultScene::processInput(time_t dt)
 {
@@ -228,6 +222,7 @@ void DefaultScene::draw(time_t dt, Camera myCamera)
 	spotMesh->draw();
 };
 
+//Link rim shader
 void DefaultScene::linkFogShader(Camera myCamera)
 {
 	
@@ -248,6 +243,7 @@ void DefaultScene::linkFogShader(Camera myCamera)
 
 }
 
+//Link bump shader
 void DefaultScene::linkBumpMapping()
 {
 	GLuint t1L = glGetUniformLocation(bump->getID(), "diffuse"); //texture 1 location
@@ -263,13 +259,15 @@ void DefaultScene::linkBumpMapping()
 	glUniform1i(t2L, 1);
 }
 
+//Link toon shader
 void DefaultScene::linkToonShader()
 {
 	toon->setMat4("modelMatrix", toonTrans->GetModel());
 	toon->setVec3("lightDir", glm::vec3(0.5f, 0.5f, -0.5f));
-
+	toon->setVec3("inColor", glm::vec3(1.0, 0.5, 0.5));
 }
 
+//Link fade shader
 void DefaultScene::linkFadeShader()
 {
 	fade->setFloat("counter", counter);
@@ -285,6 +283,7 @@ void DefaultScene::linkFadeShader()
 
 }
 
+//Link normal shader
 void DefaultScene::linkNormalTexShader()
 {
 
@@ -297,9 +296,12 @@ void DefaultScene::linkNormalTexShader()
 
 }
 
+//Link water shader
 void DefaultScene::linkWaterShader()
 {
 	water->setFloat("counter", counter);
+	water->setFloat("height", 20);
+	water->setFloat("width", 0.5);
 
 	//set textures
 	GLuint t1L = glGetUniformLocation(water->getID(), "diffuse"); //texture 1 location
@@ -308,6 +310,7 @@ void DefaultScene::linkWaterShader()
 
 }
 
+//Link light shader
 void DefaultScene::linkLightShader(Camera myCamera, Transform* transform)
 {
 
@@ -318,7 +321,6 @@ void DefaultScene::linkLightShader(Camera myCamera, Transform* transform)
 	//Frag
 	light->setVec3("lightDir", glm::vec3(-0.5, 2, -0.5));
 	light->setVec3("lightPos", glm::vec3(0, 1, 1));
-
 	light->setVec4("ambient", glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
 	light->setVec4("diffuse", glm::vec4(0.7f, 0.7f, 0.7f, 1.0f));
 	light->setVec4("specular", glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));

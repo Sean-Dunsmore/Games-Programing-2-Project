@@ -2,6 +2,11 @@
 #include "Scene.h"
 #include <windows.h>
 
+//Scene that contains a shader that applies color to an object based on normals
+//Additional controls on numpad
+//1,2,3 - Move on Z axis
+//4,5,6 - Move on Y axis
+//7,8,9 - Move on Z axis
 class NormalTextureScene : public Scene
 {
 public:
@@ -10,8 +15,6 @@ public:
 	~NormalTextureScene(); //Deconstructor
 
 	void initaliseScene(Camera& myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -23,7 +26,7 @@ protected:
 
 	void linkNormalTexShader(); //Link light shader
 
-	void cleanup();
+	void cleanup(); //Cleanup
 
 	Shader* normalTex;
 	Texture* texture;
@@ -32,5 +35,8 @@ protected:
 
 	float counter = 1;
 
+	float posX = 0;
+	float posY = 0;
+	float posZ = 0;
 };
 

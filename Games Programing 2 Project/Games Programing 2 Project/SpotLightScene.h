@@ -2,6 +2,11 @@
 #include "Scene.h"
 #include <windows.h>
 
+//Scene that uses the light shader to create a pointlight
+//Additional controls
+//1,2,3 - Rotate light on Z
+//4,5,6 - Rotate light on Y
+//7,8,9 - Rotate light on X
 class SpotLightScene : public Scene
 {
 public:
@@ -10,8 +15,6 @@ public:
 	~SpotLightScene(); //Deconstructor
 
 	void initaliseScene(Camera& myCamera); //Initilize Scene
-
-	void resetScene(); //Reset Game
 
 	void processInput(time_t dt); //Process inputs from user
 
@@ -23,25 +26,22 @@ protected:
 
 	void linkLightShader(Camera myCamera); //Link light shader
 
-	void cleanup();
+	void cleanup(); //Clean up
 
 	Shader* light;
 	Texture* texture;
 	Mesh* mesh;
 	Transform* transform;
 
+	//Mesh to represent light
 	Mesh* lightMesh;
 	Transform* lightTransform;
 
 	float counter = 1;
 	int lightType = 2;
 
-	float RotX = 0.5;
-	float RotY = 2;
-	float RotZ = 0.5;
-
-	float PosX = 0;
-	float PosY = 5;
-	float PosZ = 0;
+	float rotX = 0.5;
+	float rotY = 2;
+	float rotZ = 0.5;
 
 };

@@ -2,6 +2,7 @@
 #include <string>
 #include <GL\glew.h>
 
+//Texture Class
 class Texture
 {
 public:
