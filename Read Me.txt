@@ -1,0 +1,47 @@
+Submission to Caledonian university for games programing 2
+Sean Dunsmore
+
+0-----------Controls-------------0
+W,A,S,D - Move Camera
+Arrowkeys - look around
+J,K - Change Scene
+
+Some scenes have additional functions on numpad
+---------------------
+Ambient light scene
+1,2,3 - Rotate Light
+---------------------
+Bump map scene
+1,2 - Enable disable bump map
+---------------------
+Fade Scene
+1,2,3 - Scale Z
+4,5,6 - Scale Y
+7,8,9 - Scale X
+---------------------
+Normal texture Scene
+1,2,3 - Move on Z axis
+4,5,6 - Move on Y axis
+7,8,9 - Move on Z axis
+---------------------
+Point light Scene
+1,2,3 - Move light on Z
+4,5,6 - Move light on Y
+7,8,9 - Move light on X
+---------------------
+Rim light Scene
+1,2,3 - Swap rim lighting method and color
+---------------------
+Spot light Scene
+1,2,3 - Rotate light on Z
+4,5,6 - Rotate light on Y
+7,8,9 - Rotate light on X
+---------------------
+Toon scene
+1,2,3 - Change blue color
+4,5,6 - Change green color
+7,8,9 - Change red color
+---------------------
+Water Scene
+4,6 - Change wave Width
+2,8 - Change wave Height
