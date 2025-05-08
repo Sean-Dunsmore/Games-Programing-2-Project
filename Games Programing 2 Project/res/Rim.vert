@@ -6,11 +6,11 @@ layout (location = 2) in vec3 vertexNormal;
 
 uniform mat4 transform;
 
-out vec3 normal;
-out vec3 viewDirection;
+out vec3 normal; //Normals
+out vec3 viewDirection; //Direction camera is facing
 
 uniform mat4 modelMatrix;
-uniform vec3 camPos;
+uniform vec3 camPos; //Camera position
 
 void main()
 {

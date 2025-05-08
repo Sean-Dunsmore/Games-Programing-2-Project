@@ -6,8 +6,8 @@ layout (location = 2) in vec3 VertexNormal;
 
 uniform mat4 transform;
 
-out vec2 tC;
-out vec3 normal;
+out vec2 tC; //Text coordinates
+out vec3 normal; //normals
 
 uniform mat4 modelMatrix;
 

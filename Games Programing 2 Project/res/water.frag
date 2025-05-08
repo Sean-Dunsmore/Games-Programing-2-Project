@@ -8,6 +8,7 @@ out vec4 FragColour;
 
 void main()
 {
+	//Update texture coordinates over time to scroll the texture
 	vec2 updatedTC = vec2(tC.x *10,tC.y*10 + time * 0.1);
 	vec4 Color = texture2D(diffuse, updatedTC);
 

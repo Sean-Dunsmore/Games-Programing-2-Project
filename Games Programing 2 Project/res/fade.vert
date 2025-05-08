@@ -3,7 +3,7 @@
 layout (location = 0) in vec3 VertexPosition;
 layout (location = 1) in vec2 TextCoords;
 
-out vec2 tC;//name must be different
+out vec2 tC;//tex coords
 
 uniform mat4 transform;
 

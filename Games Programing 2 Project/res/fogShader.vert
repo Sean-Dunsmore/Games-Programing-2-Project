@@ -6,11 +6,11 @@ layout (location = 2) in vec3 VertexNormal;
 
 uniform mat4 modelMatrix;
 uniform mat4 transform;
-uniform vec3 camPos;
+uniform vec3 camPos; //Camera position
 
-out vec3 v_norm;
-out vec4 v_pos; 
-out vec2 tC;
+out vec3 v_norm; //normals
+out vec4 v_pos;  //World position
+out vec2 tC; //Tex coords
 
 void main()
 {

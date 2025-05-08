@@ -3,7 +3,7 @@
 layout (location = 0) in vec3 VertexPosition;
 layout (location = 2) in vec3 VertexNormal;
 
-out vec3 normal;
+out vec3 normal; //Normals
 
 uniform mat4 modelMatrix;
 uniform mat4 transform;
